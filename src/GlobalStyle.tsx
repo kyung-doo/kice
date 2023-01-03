@@ -190,6 +190,7 @@ const GlobalStyle = createGlobalStyle`
    .mb60{margin-bottom:60px;}
 
    .align-right{text-align:right}
+   .align-centre{text-align:center}
    .hidden{display:none}
    
 
@@ -203,7 +204,7 @@ const GlobalStyle = createGlobalStyle`
       line-height: 1;
    }
 
-   #root{
+   #root {
       position: relative;
       width: 100%;
       height: 100%;

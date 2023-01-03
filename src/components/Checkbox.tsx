@@ -7,7 +7,7 @@ export interface Props extends HTMLProps<HTMLInputElement> {
     */
    label?: string;
    /**
-    * 리벨명
+    * 리벨 방향
     */
    labelArrow?: 'right' | 'left';
 }

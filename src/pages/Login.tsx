@@ -56,8 +56,9 @@ const Login: FC = () => {
                onChange={() => setAutoLogin(!autoLogin)}
             />
             <div className="align-right">
+               <Button as="a" onClick={() => navigate({ pathname: '/consulting-apply/choose-school-board', search: '?pageId=1'})}>공지사항</Button><br />
                <Button as="a" onClick={() => navigate('/join')}>회원가입</Button><br />
-               <Button as="a" onClick={() => navigate('/findIdPass')}>아이디 / 비밀번호 찾기</Button>
+               <Button as="a" onClick={() => navigate('/find-id-password')}>아이디 / 비밀번호 찾기</Button>
             </div>
          </div>
       </Styled.Login>
