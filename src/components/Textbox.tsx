@@ -2,15 +2,7 @@ import { FC, HTMLProps } from "react";
 import styled from "styled-components";
 
 
-export interface Props extends HTMLProps<HTMLInputElement>{
-   /**
-    * 클래스 이름
-    */
-   className?: string;
-   /**
-    * 태그 변경
-    */
-   as?: any;
+export interface Props extends HTMLProps<HTMLInputElement> {
    /**
     * 풀사이즈 ( width 100% )
     */
@@ -25,7 +17,7 @@ export interface Props extends HTMLProps<HTMLInputElement>{
 /**
  * 텍스트 인풋 컴포넌트
  */
-const Textbox: FC<Props> = ({ 
+const Textbox: FC<Props & {as?: any}> = ({ 
    className, 
    ...props
 }) => {

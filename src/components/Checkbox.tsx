@@ -1,16 +1,7 @@
 import { FC, HTMLProps } from "react";
 import styled from 'styled-components';
 
-
-export interface Props extends HTMLProps<HTMLInputElement>{
-   /**
-    * 클래스 이름
-    */
-   className?: string;
-   /**
-    * 태그 변경
-    */
-   as?: any;
+export interface Props extends HTMLProps<HTMLInputElement> {
    /**
     * 리벨명
     */
@@ -24,7 +15,7 @@ export interface Props extends HTMLProps<HTMLInputElement>{
 /**
  * 버튼 컴포넌트
  */
-const Checkbox: FC<Props> = ({ 
+const Checkbox: FC<Props & {as?: any}> = ({ 
    className, 
    label,
    labelArrow = 'right',
