@@ -27,7 +27,7 @@ export interface Props extends HTMLProps<HTMLDivElement> {
    /**
     * 페이지 클릭시 콜백
     */
-   onPage?: (idx: number) => void;
+   // onPage?: (idx: number) => void;
 }
 
 /**
