@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components';
 
 
 export interface Props extends HTMLProps<HTMLButtonElement> {
-   
 }
 
 /**

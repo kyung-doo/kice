@@ -1,11 +1,14 @@
 import { FC, useCallback, useState } from "react";
 import styled from 'styled-components';
 import Pagination from "../components/Pagination";
-
-
+import Modal from "../components/Modal";
+import Button from "../components/Button";
 
 const Testpage: FC = () => {
+   // 페이지네이션 
    let [currentPage, setCurrentPage] = useState<number>(1);
+   // 모달
+   let [modal, setModal] = useState<boolean>(false);
 
    return (
       <Styled.Testpage>
@@ -16,6 +19,10 @@ const Testpage: FC = () => {
             currentPage={currentPage}  
             setCurrentPage={setCurrentPage}
          />
+         <Button onClick={()=>setModal(true)}>모달버튼</Button>
+         {
+            modal &&  <Modal setModal={setModal}/>
+         }
       </Styled.Testpage>
    );
 }

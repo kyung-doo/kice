@@ -1,6 +1,6 @@
 import { ResultType } from "@remix-run/router/dist/utils";
 import { FC, HTMLProps, useCallback, useEffect, useState } from "react";
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { createImportSpecifier } from "typescript";
 
 export interface Props extends HTMLProps<HTMLDivElement> {
@@ -54,7 +54,7 @@ const Pagination: FC<Props & {as?: any}> = ({
 
       let arr = [];
       for(let i = firstPage; i <= lastPage; i++){
-         arr.push(<li onClick={()=>setCurrentPage(i)} className={currentPage === i ? 'active' : ''}>{i}</li>)
+         arr.push(<li key={i} onClick={()=>setCurrentPage(i)} className={currentPage === i ? 'active' : ''}>{i}</li>)
       }
       return arr;
 
@@ -63,25 +63,23 @@ const Pagination: FC<Props & {as?: any}> = ({
    return (
       <Styled.Pagination className={className} {...props}>
          <div className="row" style={{ display:'flex' }}>
-            {
-               groupCount > 1 && (
-                  <>
-                     <button onClick={()=>setCurrentPage(1)}>◀◀</button>
-                     <button onClick={()=>{
-                        currentPage <= listView ? setCurrentPage(1) : setCurrentPage(currentPage - listView)
-                     }}>◀</button>
-                  </>
-               )
-            }
+               <>
+                  <button onClick={()=>setCurrentPage(1)} disabled={groupCount === 1}>◀◀</button>
+                  <button onClick={()=>{
+                     groupCount > 1 && setCurrentPage(firstPage - listView) 
+                  }} disabled={groupCount === 1}>◀</button>
+               </>
             <ol style={{ display:'flex' }}>
                {showPageNum()}
             </ol>
-            <button onClick={()=>{
-               currentPage < totalPage && groupCount < groupLength 
-               ? setCurrentPage(currentPage + listView) 
-               : setCurrentPage(lastPage);
-            }}>▶</button>
-            <button onClick={()=>setCurrentPage(totalPage)}>▶▶</button>
+            <button 
+            onClick={()=>{ groupCount < groupLength && setCurrentPage(firstPage + listView) }}
+            disabled={groupCount === groupLength}
+            >▶</button>
+            <button 
+            onClick={()=>setCurrentPage(totalPage)}
+            disabled={groupCount === groupLength}
+            >▶▶</button>
          </div>
       </Styled.Pagination>
    );
