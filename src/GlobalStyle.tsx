@@ -20,8 +20,11 @@ const GlobalStyle = createGlobalStyle`
       font-size:100%;
       vertical-align:baseline;
       background:transparent;
+      box-sizing: border-box;
    }
-
+   li,ol{
+      list-style: none;
+   }
    article,aside,details,figcaption,figure,
    footer,header,hgroup,menu,nav,section {
       display:block;
