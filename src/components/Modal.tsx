@@ -2,7 +2,7 @@ import { FC, HTMLProps } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 
-export interface Props extends HTMLProps<HTMLInputElement> {
+export interface Props extends HTMLProps<HTMLDivElement> {
     /**
      * 모달 header
     */

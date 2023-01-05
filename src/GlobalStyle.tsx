@@ -29,6 +29,12 @@ const GlobalStyle = createGlobalStyle`
    footer,header,hgroup,menu,nav,section {
       display:block;
    }
+   textarea{
+      resize: none;
+      &:focus{
+         outline: none;
+      }
+   }
 
    /*space*/
    .pl1{padding-left:1px;}

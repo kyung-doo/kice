@@ -13,7 +13,7 @@ export interface Props extends HTMLProps<HTMLInputElement> {
 }
 
 /**
- * checkbox 컴포넌트
+ * 체크박스 컴포넌트
  */
 const Checkbox: FC<Props & {as?: any}> = ({ 
    className, 
