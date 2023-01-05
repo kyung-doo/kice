@@ -6,6 +6,10 @@ import { useCallback } from "@storybook/addons";
 
 
 export interface Props extends ReactSelectProps {
+   /**
+    * width 값
+    */
+   w?: string;
 }
 
 /**
@@ -14,12 +18,13 @@ export interface Props extends ReactSelectProps {
  */
 const Select: FC<Props & {as?: any}> = ({ 
    className,
+   w,
    placeholder="선택해 주세요.",
    ...props
 }) => {
 
    return (
-      <Styled.Select className={className}>
+      <Styled.Select className={className} w={w}>
          <ReactSelect 
             classNamePrefix="select"
             isSearchable={false}
@@ -33,9 +38,7 @@ const Select: FC<Props & {as?: any}> = ({
 
 const Styled = {
    Select: styled.div<Props>`
-      .select__control{
-         min-width: 150px;
-      }
+      width: ${props => props.w || ''};
    `,
 }
 

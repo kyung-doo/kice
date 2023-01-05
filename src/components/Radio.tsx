@@ -1,5 +1,6 @@
-import { FC, HTMLProps } from "react";
+import { ChangeEvent, FC, HTMLProps, useContext } from "react";
 import styled from 'styled-components';
+import { RadioContext } from "./RadioGroup";
 
 export interface Props extends HTMLProps<HTMLInputElement> {
    /**
@@ -13,29 +14,38 @@ export interface Props extends HTMLProps<HTMLInputElement> {
 }
 
 /**
- * checkbox 컴포넌트
+ * radio 컴포넌트
  */
-const Checkbox: FC<Props & {as?: any}> = ({ 
+const Radio: FC<Props & {as?: any}> = ({ 
    className, 
    label,
    labelArrow = 'right',
+   value,
    ...props
 }) => {
 
+   const [_value, onChange] = useContext<any>(RadioContext);
+
    return (
-      <Styled.CheckBox className={className} labelArrow={labelArrow}>
+      <Styled.Radio className={className} labelArrow={labelArrow}>
          {labelArrow === 'left' && <span>{label}</span>}
          <div className="checkWrap">
-            <input type="checkbox" {...props} />
-            <span className="checkmark"></span>
+            <input 
+               type="radio" 
+               value={value}
+               checked={_value !== undefined ? value === _value : undefined} 
+               onChange={(e:ChangeEvent<HTMLInputElement>) => onChange && onChange(e.target.value)}
+               {...props} 
+            />
+            <span className="radiokmark"></span>
          </div>
          {labelArrow === 'right' && <span>{label}</span>}
-      </Styled.CheckBox>
+      </Styled.Radio>
    );
 }
 
 const Styled = {
-   CheckBox: styled.label<Props>`
+   Radio: styled.label<Props>`
       .checkWrap{
          position: relative;
          display: inline-block;
@@ -43,39 +53,38 @@ const Styled = {
          margin-right: ${props => props.labelArrow === 'right' ? '5px' : ''};
          margin-left: ${props => props.labelArrow === 'left' ? '5px' : ''};
       }
-      
       input {
          opacity: 0;
          height: 18px;
          width: 18px;
       }
-      .checkmark{
+      .radiokmark{
          position: absolute;
          top: 0;
          left: 0;
          height: 20px;
          width: 20px;
          border: solid 1px #c7c7c7;
+         border-radius: 50%;
       }
-      .checkmark:after {
+      .radiokmark:after {
          content: "";
          position: absolute;
          display: none;
-         left: 6px;
-         top: 2px;
-         width: 5px;
+         left: 4px;
+         top: 4px;
+         width: 10px;
          height: 10px;
-         border: solid #000;
-         border-width: 0 3px 3px 0;
-         transform: rotate(45deg);
+         background-color: #000;
+         border-radius: 50%;
       }
-      input:checked ~ .checkmark {
+      input:checked ~ .radiokmark {
          border-color: #525252;
       }
-      input:checked ~ .checkmark:after {
+      input:checked ~ .radiokmark:after {
          display: block;
       }
    `,
 }
 
-export default Checkbox;
+export default Radio;
