@@ -5,6 +5,11 @@ import styled, { css } from 'styled-components';
 
 
 export interface Props extends HTMLProps<HTMLButtonElement> {
+   
+   /**
+    * 클릭시 이벤트  
+    * */
+   onClick ?: (e : React.MouseEvent<HTMLButtonElement>)=> void
 }
 
 /**
@@ -16,7 +21,6 @@ const Button: FC<Props & {as?: any}> = ({
    as,
    ...props
 }) => {
-
    return (
       <Styled.Button 
          className={className} 

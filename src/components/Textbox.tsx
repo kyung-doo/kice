@@ -1,4 +1,4 @@
-import { FC, HTMLProps } from "react";
+import { FC, HTMLProps, ChangeEvent } from "react";
 import styled from "styled-components";
 
 
@@ -11,18 +11,26 @@ export interface Props extends HTMLProps<HTMLInputElement> {
     * width 값
     */
    w?: string;
+   /**
+    * 텍스트 입력시 
+    */
+    onChange ?: (a : any) => void;
 }
-
 
 /**
  * 텍스트 인풋 컴포넌트
  */
 const Textbox: FC<Props & {as?: any}> = ({ 
    className, 
+   onChange,
    ...props
 }) => {
    return (
-      <Styled.Textbox className={className} {...props} />
+      <Styled.Textbox 
+      className={className} 
+      onChange={(e:ChangeEvent<HTMLInputElement>) => onChange && onChange(e.target.value)}
+      {...props} 
+      />
    );
 }
 

@@ -7,6 +7,7 @@ import Select from "../components/Select";
 import RadioGroup from "../components/RadioGroup";
 import Radio from "../components/Radio";
 import Textarea from "../components/TextArea";
+import BoardSearch from "../components/BoardSearch";
 
 
 // select
@@ -31,8 +32,17 @@ const Testpage: FC = () => {
    const [radioVal1, setLadioVal1] = useState<string>('value1');
    const [radioVal2, setLadioVal2] = useState<string>('value2');
    
-   // 텍스트박스
+   // textarea
    const [textVal, setTextval] = useState<any>('');
+
+   // boardSearch
+   const [keyword, setKeyword] = useState<any>('');
+
+
+   const onSearch = (type: string, keyword: string) : void => {
+      console.log(type);
+      console.log(keyword);
+   }
 
    return (
       <Styled.Testpage>
@@ -117,17 +127,20 @@ const Testpage: FC = () => {
                value="value4"
             />
          </RadioGroup>
-
-         <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval}/>
-
+         <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval} h={'100px'}/>
+         <BoardSearch 
+         onSearch={onSearch} 
+         options={selectOptions}
+         />
       </Styled.Testpage>
+
    );
 }
 
 
 const Styled = {
    Testpage: styled.div`
-      
+   padding: 20px;
    `,
 }
 
