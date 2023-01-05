@@ -20,8 +20,18 @@ const Testpage: FC = () => {
             setCurrentPage={setCurrentPage}
          />
          <Button onClick={()=>setModal(true)}>모달버튼</Button>
-         {
-            modal &&  <Modal setModal={setModal}/>
+         {modal &&  
+            <Modal 
+               head={<h2 className="modal-title">모달타이틀</h2>}
+               foot={
+                  <>
+                     <Button>취소</Button>
+                     <Button>발송</Button>
+                  </>
+               }
+               setModal={setModal}>
+               <p>모달내용</p>
+            </Modal>
          }
       </Styled.Testpage>
    );

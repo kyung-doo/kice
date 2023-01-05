@@ -3,11 +3,18 @@ import styled from "styled-components";
 import Button from "./Button";
 
 export interface Props extends HTMLProps<HTMLInputElement> {
- /*
-  모달 닫기 state
-  */
-  setModal : ( a: boolean ) => void;
-
+    /**
+     * 모달 header
+    */
+    head?: JSX.Element;
+    /**
+     * 모달 footer
+    */
+    foot?: JSX.Element;
+    /**
+     * 모달 닫기 state
+    */
+    setModal : ( a: boolean ) => void;
 }
 
 
@@ -16,6 +23,9 @@ export interface Props extends HTMLProps<HTMLInputElement> {
  */
 const Modal: FC<Props & {as?: any}> = ({ 
     className,
+    head,
+    children,
+    foot,
     ...props
 }) => {
     let { setModal } = props;
@@ -23,15 +33,17 @@ const Modal: FC<Props & {as?: any}> = ({
      <Styled.Modal {...props}>
          <div className={`modal-content ${className}`}>
             <div className="modal-header fj">
-                    <h2 className="modal-title">모달타이틀</h2>
+                {head}
+                    {/* <h2 className="modal-title">모달타이틀</h2> */}
                     <button className="btn" onClick={()=>setModal(false)}>x</button>
             </div>
             <div className="modal-body">
-                    모달컨텐츠
+                {children}
             </div>
             <div className="modal-footer">
-                <Button>취소</Button>
-                <Button>발송</Button>
+                {foot}
+                {/* <Button>취소</Button>
+                <Button>발송</Button> */}
             </div>
          </div>
      </Styled.Modal>
