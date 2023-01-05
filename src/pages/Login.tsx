@@ -20,12 +20,6 @@ const Login: FC = () => {
       console.log('id: ', id, ', password: ', password, ', autologin: ', autoLogin)
    },[id, password, autoLogin]);
 
-   const selectOptions = [
-      { value: 'val1', label: 'option1' },
-      { value: 'val2', label: 'option2' },
-      { value: 'val3', label: 'option3' }
-     ]
-
 
    return (
       <Styled.Login>
@@ -63,16 +57,10 @@ const Login: FC = () => {
                onChange={() => setAutoLogin(!autoLogin)}
             />
             <div className="align-right">
-               <Button as="a" onClick={() => navigate({ pathname: '/consulting-apply/choose-school-board', search: '?pageId=1'})}>공지사항</Button><br />
                <Button as="a" onClick={() => navigate('/join')}>회원가입</Button><br />
                <Button as="a" onClick={() => navigate('/find-id-password')}>아이디 / 비밀번호 찾기</Button>
             </div>
          </div>
-         <Select 
-            className="select"
-            options={selectOptions}
-            defaultInputValue={selectOptions[0].value}
-         />
       </Styled.Login>
    );
 }

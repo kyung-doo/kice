@@ -19,7 +19,7 @@ export interface Props extends HTMLProps<HTMLInputElement> {
 
 
 /**
- * 텍스트 인풋 컴포넌트
+ * 모달 컴포넌트
  */
 const Modal: FC<Props & {as?: any}> = ({ 
     className,

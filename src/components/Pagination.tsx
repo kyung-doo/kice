@@ -31,7 +31,7 @@ export interface Props extends HTMLProps<HTMLDivElement> {
 }
 
 /**
- * 버튼 컴포넌트
+ * 페이지네이션 컴포넌트
  */
 const Pagination: FC<Props & {as?: any}> = ({ 
    className,

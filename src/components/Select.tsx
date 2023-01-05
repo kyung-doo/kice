@@ -1,26 +1,30 @@
 import { FC, HTMLProps } from "react";
 import styled, { css } from 'styled-components';
-import ReactSelect, { Props as ReactSelectProps } from 'react-select';
+import ReactSelect, { OptionProps, Props as ReactSelectProps } from 'react-select';
+import { useCallback } from "@storybook/addons";
 
 
 
 export interface Props extends ReactSelectProps {
-   
 }
 
 /**
- * 버튼 컴포넌트
+ * select 컴포넌트
+ * props는 https://react-select.com/home 참고
  */
 const Select: FC<Props & {as?: any}> = ({ 
    className,
+   placeholder="선택해 주세요.",
    ...props
 }) => {
 
    return (
       <Styled.Select className={className}>
          <ReactSelect 
+            classNamePrefix="select"
             isSearchable={false}
             isClearable={false}
+            placeholder={placeholder}
             {...props} 
          />
       </Styled.Select>
@@ -29,7 +33,9 @@ const Select: FC<Props & {as?: any}> = ({
 
 const Styled = {
    Select: styled.div<Props>`
-      
+      .select__control{
+         min-width: 150px;
+      }
    `,
 }
 
