@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Pagination from '../components/Pagination';
-import { action } from '@storybook/addon-actions';
 import { useState } from 'react';
 
 export default {
