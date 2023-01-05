@@ -1,9 +1,10 @@
-import { FC, useCallback, useState } from "react";
+import { ChangeEvent, FC, useCallback, useState } from "react";
 import Button from "../components/Button";
 import styled from 'styled-components';
 import Textbox from "../components/Textbox";
 import Checkbox from "../components/Checkbox";
 import { useNavigate } from "react-router-dom";
+import Select from "../components/Select";
 
 
 
@@ -18,6 +19,12 @@ const Login: FC = () => {
    const onLogin = useCallback(() => {
       console.log('id: ', id, ', password: ', password, ', autologin: ', autoLogin)
    },[id, password, autoLogin]);
+
+   const selectOptions = [
+      { value: 'val1', label: 'option1' },
+      { value: 'val2', label: 'option2' },
+      { value: 'val3', label: 'option3' }
+     ]
 
 
    return (
@@ -35,7 +42,7 @@ const Login: FC = () => {
                   f 
                   maxLength={10} 
                   value={id}
-                  onChange={(e: any) => setId(e.target.value)} 
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setId(e.target.value)} 
                />
                <Textbox 
                   className="mt10" 
@@ -44,7 +51,7 @@ const Login: FC = () => {
                   f 
                   maxLength={10} 
                   value={password} 
-                  onChange={(e: any) => setPassword(e.target.value)} 
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} 
                />
             </div>
             <Button className="mt20" onClick={onLogin}>로그인</Button>
@@ -61,6 +68,11 @@ const Login: FC = () => {
                <Button as="a" onClick={() => navigate('/find-id-password')}>아이디 / 비밀번호 찾기</Button>
             </div>
          </div>
+         <Select 
+            className="select"
+            options={selectOptions}
+            defaultInputValue={selectOptions[0].value}
+         />
       </Styled.Login>
    );
 }
