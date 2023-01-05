@@ -34,16 +34,13 @@ const Modal: FC<Props & {as?: any}> = ({
          <div className={`modal-content ${className}`}>
             <div className="modal-header fj">
                 {head}
-                    {/* <h2 className="modal-title">모달타이틀</h2> */}
-                    <button className="btn" onClick={()=>setModal(false)}>x</button>
+                <button className="btn" onClick={()=>setModal(false)}>x</button>
             </div>
             <div className="modal-body">
                 {children}
             </div>
             <div className="modal-footer">
                 {foot}
-                {/* <Button>취소</Button>
-                <Button>발송</Button> */}
             </div>
          </div>
      </Styled.Modal>
