@@ -1,4 +1,5 @@
-import { ComponentType, FC } from "react";
+import { ComponentType, FC, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import styled from 'styled-components';
 import useUser from "../hooks/useUser";
 import Footer from "./Footer";
@@ -8,6 +9,12 @@ import Header from "./Header";
 const withLayout = ( Component: ComponentType ): FC => () => {
 
    const { userData } = useUser();
+   
+   // 비로그인시
+   if(!userData) {
+      return <Navigate to="/login" replace={true} />;
+   }
+
 
    return (
       <Styled.Container>

@@ -1,9 +1,20 @@
 
-import { useState, useLayoutEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 const useUser = () => {
 
    const [userData, setUserData] = useState<any>(undefined);
+   
+   if(!userData) {
+      if(localStorage.getItem("userData")) {
+         setUserData(JSON.parse(localStorage.getItem("userData")!));
+      } else {
+         if(sessionStorage.getItem("userData")){
+            setUserData(JSON.parse(sessionStorage.getItem("userData")!));
+         }
+      }
+   }
+
    const login = useCallback((isAuto: boolean, id: string, password: string) => {
       // window.$axios.post('/login', {id: id, password: password})
       // .then(res => {
@@ -20,21 +31,13 @@ const useUser = () => {
       // });
    },[userData]);
 
+
    const logout = useCallback(() => {
       localStorage.clear();
       sessionStorage.clear();
       setUserData(undefined);
    },[userData]);
 
-   useLayoutEffect(() => {
-      if(localStorage.getItem("userData")) {
-         setUserData(JSON.parse(localStorage.getItem("userData")!));
-      } else {
-         if(sessionStorage.getItem("userData")){
-            setUserData(JSON.parse(sessionStorage.getItem("userData")!));
-         }
-      }
-   }, []);
 
    return {
       userData,
