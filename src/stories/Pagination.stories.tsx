@@ -18,9 +18,8 @@ const Template: ComponentStory<typeof Pagination> = ({ listLength, listView, pag
       listLength={listLength}
       listView={listView}
       pageView={pageView}
-      setCurrentPage={setCurrentPage}>
-        버튼
-    </Pagination>
+      setCurrentPage={setCurrentPage} 
+    />
   );
 }
 
