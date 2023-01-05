@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import Select from "../components/Select";
 import RadioGroup from "../components/RadioGroup";
 import Radio from "../components/Radio";
+import Textarea from "../components/TextArea";
 
 
 // select
@@ -19,9 +20,9 @@ const selectOptions= [
 
 const Testpage: FC = () => {
    // 페이지네이션 
-   let [currentPage, setCurrentPage] = useState<number>(1);
+   const [currentPage, setCurrentPage] = useState<number>(1);
    // 모달
-   let [modal, setModal] = useState<boolean>(false);
+   const [modal, setModal] = useState<boolean>(false);
 
    // 셀렉트박스
    const [selectVal, setSelectVal] = useState<any>(selectOptions[0]);
@@ -29,7 +30,9 @@ const Testpage: FC = () => {
    // 라디오
    const [radioVal1, setLadioVal1] = useState<string>('value1');
    const [radioVal2, setLadioVal2] = useState<string>('value2');
-
+   
+   // 텍스트박스
+   const [textVal, setTextval] = useState<any>('');
 
    return (
       <Styled.Testpage>
@@ -115,6 +118,7 @@ const Testpage: FC = () => {
             />
          </RadioGroup>
 
+         <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval}/>
 
       </Styled.Testpage>
    );

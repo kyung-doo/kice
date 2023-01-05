@@ -19,6 +19,7 @@ const selectOptions = [
 ];
 
 const Template: ComponentStory<typeof Select> = (args) => {
+
    const onChange = useCallback((option: any) => {
       console.log('select 변경: ', option);
    },[]);
