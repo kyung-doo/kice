@@ -185,9 +185,7 @@ const Scheduler: FC<Props & {as?: any}> = ({
 
 const Styled = {
    Scheduler: styled.div<Props>`
-      .calendar{
-         border: solid 1px #ccc;
-      }
+      
       .header{
          display: flex;
          flex-direction: row;
@@ -201,6 +199,8 @@ const Styled = {
       .day-names{
          display: flex;
          flex-direction: row;
+         border: solid 1px #ccc;
+         border-bottom: none;
          .day-name{
             width: calc(100% / 7);
             text-align: center;
@@ -214,6 +214,8 @@ const Styled = {
          display: flex;
          flex-direction: row;
          flex-wrap: wrap;
+         border: solid 1px #ccc;
+         border-top: none;
          .day{
             width: calc(100% / 7);
             height: 100px;
@@ -224,6 +226,7 @@ const Styled = {
             border: solid 1px #ccc;
             &.prev,
             &.next {
+               background-color: #e6e6e6;
                .number {
                   opacity: 0.3;
                }
