@@ -75,7 +75,7 @@ const Testpage: FC = () => {
       // ajax 처리후 setScheduleData 변경
    },[]);
 
-   const onCickSchedule = useCallback(( scheduleId: string ) => {
+   const onClickSchedule = useCallback(( scheduleId: string ) => {
       console.log('스케쥴 클릭: ', scheduleId);
    },[]);
 
@@ -182,7 +182,7 @@ const Testpage: FC = () => {
             <Scheduler 
                scheduleData={schduleData} 
                onChangeDate={onChangeDate} 
-               onCickSchedule={onCickSchedule}
+               onClickSchedule={onClickSchedule}
             />
          }
 

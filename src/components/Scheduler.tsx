@@ -1,6 +1,7 @@
 import { FC, HTMLProps, memo, useCallback, useEffect, useMemo, useState } from "react";
 import styled from 'styled-components';
 import Button from "./Button";
+import { toLunar } from '../utils/toLunar';
 
 
 
@@ -13,7 +14,7 @@ export interface Props extends HTMLProps<HTMLDivElement> {
    /**
     * 스케쥴 데이터
     */
-   scheduleData: any[];
+   scheduleData?: any[];
    /**
     * 스케쥴 날짜 변경
     */
@@ -21,9 +22,32 @@ export interface Props extends HTMLProps<HTMLDivElement> {
    /**
     * 스케쥴 클릭 이벤트
     */
-   onCickSchedule?: ( scheduleId: string ) => void;
+   onClickSchedule?: ( scheduleId: string ) => void;
 
 }
+
+// 양력 휴일
+const solarHolidays = [
+   {month: 1, day: 1, name: '신정'},
+   {month: 3, day: 1, name: '3.1절'},
+   {month: 5, day: 5, name: '어린이날'},
+   {month: 6, day: 6, name: '현충일'},
+   {month: 8, day: 15, name: '광복절'},
+   {month: 10, day: 3, name: '개천절'},
+   {month: 10, day: 9, name: '한글날'},
+   {month: 10, day: 9, name: '크리스마스'},
+];
+
+const lunarHolidays = [
+   {month: 12, day: 30, name: '설연휴'},
+   {month: 1, day: 1, name: '설날'},
+   {month: 1, day: 2, name: '설연휴'},
+   {month: 4, day: 8, name: '부천님오신날'},
+   {month: 8, day: 14, name: '추석연휴'},
+   {month: 8, day: 15, name: '추석'},
+   {month: 8, day: 16, name: '추석연휴'},
+];
+
 
 /**
  * 스케쥴러 컴포넌트
@@ -33,13 +57,13 @@ const Scheduler: FC<Props & {as?: any}> = ({
    dayNames = ['일', '월', '화', '수', '목', '금', '토'],
    scheduleData,
    onChangeDate,
-   onCickSchedule,
+   onClickSchedule,
    as,
    ...props
 }) => {
 
    const [date, ] = useState<Date>(new Date());
-   const [dates, setDates] = useState<{num: number, type: string}[]>([]);
+   const [dates, setDates] = useState<{num: number, type: string, holiday?: string, luna?: string}[]>([]);
 
    const setCalendar = ( date: Date ) => {
       
@@ -59,8 +83,9 @@ const Scheduler: FC<Props & {as?: any}> = ({
       const thisDates = [];
       const nextDates = [];
 
-      const toDay = new Date();
+      
 
+      const toDay = new Date();
       for(let i=0; i<TLDate; i++) {
          if(viewMonth === toDay.getMonth() && viewYear === toDay.getFullYear() && i + 1 === toDay.getDate()){
             thisDates.push({num: i+1, type: 'normal today'});
@@ -79,7 +104,23 @@ const Scheduler: FC<Props & {as?: any}> = ({
          nextDates.push({num: i, type: 'next'})
       }
 
-      const dates = prevDates.concat(thisDates, nextDates);
+      const dates: {num: number, type: string, holiday?: string, luna?: string}[] = prevDates.concat(thisDates, nextDates);
+      dates.forEach((date, i) => {
+         const lunar = toLunar(viewYear, viewMonth+1, date.num);
+         const solarFind = solarHolidays.find(x => x.month === viewMonth+1 && x.day === date.num);
+         if(solarFind) {
+            date.type = date.type + " holiday";
+            date.holiday = solarFind.name;
+         }
+         if(lunar){
+            const lunarFind = lunarHolidays.find(x => x.month === lunar.month && x.day === lunar.day);
+            if(lunarFind) {
+               date.type = date.type + " holiday";
+               date.holiday = lunarFind.name;
+            }
+            date.luna = `${lunar.month}/${lunar.day}`;
+         }
+      });
       setDates(dates);
    }
 
@@ -112,6 +153,7 @@ const Scheduler: FC<Props & {as?: any}> = ({
    }, [date, dates]);
 
    const findSchedule = useCallback(( num: number ) => {
+      if(!scheduleData) return null;
       const find = scheduleData.find(data => {
          const dateStr = data.date.split("/");
          const year = parseInt(dateStr[0]); 
@@ -156,17 +198,20 @@ const Scheduler: FC<Props & {as?: any}> = ({
                      <div 
                         key={`day${i}`} 
                         className={
-                           `day ${sunday && 'sunday'} ${saturday && 'saturday'} ${date.type}`
+                           `day ${sunday ? 'sunday': ''} ${saturday ? 'saturday': ''} ${date.type}`
                         }
                      >
-                        <div className="number">{date.num}</div>
+                        <div className="number">
+                           {date.num}
+                           {date.holiday && <span>{date.holiday}</span>}
+                        </div>
                         {findSchedule(date.num) && 
                            <ul className="schedule-list">
                               {findSchedule(date.num).lists.map((list: any) => (
                                  <li key={`schedule${list.scheduleId}`}>
                                     <Button 
                                        as='a' 
-                                       onClick={() => onCickSchedule && onCickSchedule(list.scheduleId)}
+                                       onClick={() => onClickSchedule && onClickSchedule(list.scheduleId)}
                                     >
                                        {list.title}
                                     </Button>
@@ -218,7 +263,7 @@ const Styled = {
          border-top: none;
          .day{
             width: calc(100% / 7);
-            height: 100px;
+            min-height: 100px;
             padding: 4px;
             box-sizing: border-box;
             display: flex;
@@ -231,14 +276,15 @@ const Styled = {
                   opacity: 0.3;
                }
             }
-            &.sunday {
-               .number{
-                  color: red;
-               }
-            }
             &.saturday {
                .number{
                   color: blue;
+               }
+            }
+            &.sunday,
+            &.holiday {
+               .number{
+                  color: red;
                }
             }
             &.today {
