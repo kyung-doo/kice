@@ -124,7 +124,7 @@ const Testpage: FC = () => {
          </RadioGroup>
 
          <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval} h={'100px'}/>
-         
+
          <BoardSearch 
          onSearch={onSearch} 
          options={selectOptions}
