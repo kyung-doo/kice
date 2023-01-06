@@ -21,17 +21,14 @@ export interface Props extends HTMLProps<HTMLTextAreaElement> {
  */
 const TextArea: FC<Props & {as?: any}> = ({ 
    className,
-   onChange,
    placeholder = '내용을 입력해주세요.',
-   h
+   ...props
 }) => {
 
    return (
       <Styled.TextArea 
       className={className} 
-      onChange={(e:ChangeEvent<HTMLTextAreaElement>) => onChange && onChange(e.target.value)} 
-      placeholder={placeholder}
-      h={h}
+      {...props}
       />
    );
 }

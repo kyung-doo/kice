@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useState, ChangeEvent } from "react";
 import styled from 'styled-components';
 import Pagination from "../components/Pagination";
 import Modal from "../components/Modal";
@@ -123,7 +123,11 @@ const Testpage: FC = () => {
             />
          </RadioGroup>
 
-         <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval} h={'100px'}/>
+         <Textarea 
+         placeholder={'내용을 입력해주세요.'} 
+         value={textVal} 
+         onChange={(e:ChangeEvent<HTMLTextAreaElement>) => setTextval(e.target.value) } 
+         h={'100px'}/>
 
          <BoardSearch 
          onSearch={onSearch} 
