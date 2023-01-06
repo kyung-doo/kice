@@ -34,9 +34,9 @@ const BoardSearch: FC<Props & {as?: any}> = ({
 
    return (
       <Styled.BoardSearch>
-         <Select options={options} defaultValue={type} />
-         <Textbox value={keyword} onChange={setKeyword} />
-         <Button onClick={(e : React.MouseEvent<HTMLButtonElement>) => onSearch && onSearch(type,keyword)}>검색</Button>
+         <Select className={'searchSelect mr5'} options={options} defaultValue={type} />
+         <Textbox className={'mr5'} value={keyword} onChange={setKeyword} />
+         <Button className={'mr5'} onClick={(e : React.MouseEvent<HTMLButtonElement>) => onSearch && onSearch(type,keyword)}>검색</Button>
          <Button>등록</Button>
       </Styled.BoardSearch>
     
@@ -46,6 +46,7 @@ const BoardSearch: FC<Props & {as?: any}> = ({
 const Styled = {
    BoardSearch : styled.div<Props>`
       display: flex;
+      height: 50px;
    `,
 }
 

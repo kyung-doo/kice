@@ -23,6 +23,7 @@ const Select: FC<Props & {as?: any}> = ({
    ...props
 }) => {
 
+   console.log(className);
    return (
       <Styled.Select className={className} w={w}>
          <ReactSelect 
@@ -39,6 +40,9 @@ const Select: FC<Props & {as?: any}> = ({
 const Styled = {
    Select: styled.div<Props>`
       width: ${props => props.w || ''};
+      .select__control{
+         height: 100%;
+      }
    `,
 }
 
