@@ -1,17 +1,13 @@
-import { FC, useCallback, useState } from "react";
+import { FC } from "react";
 import styled from 'styled-components';
 import Button from "../../components/Button";
 import ContentsTitle from "../../components/ContentsTitle";
 import withLayout from "../../layout/withLayout";
 
-
-
-
 const ApplyComp: FC = () => {
-
    return (
       <Styled.ApplyMain>
-         <ContentsTitle l={'컨설팅 신청'} r={'컨설팅 신청 및 보고'} />
+         <ContentsTitle depth2={'컨설팅 신청'} depth1={'컨설팅 신청 및 보고'} />
          <div className="pt60">
             <p>정상적으로 제출되었습니다.<br/>
             신청해주신 내용에 적합한<br/>
@@ -26,11 +22,9 @@ const ApplyComp: FC = () => {
    );
 }
 
-
 const Styled = {
    ApplyMain: styled.div`
          text-align: center;
-      
    `,
 }
 

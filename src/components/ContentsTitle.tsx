@@ -6,14 +6,13 @@ import styled, { css } from 'styled-components';
 
 export interface Props extends HTMLProps<HTMLDivElement> {
    /**
-    * 좌측 타이틀
+    * 1depth 타이틀
     */
-    l : string;
+    depth1 : string;
    /**
-    * 우측 텍스트
+    * 2depth 타이틀
     */
-    r : string;
-
+    depth2 : string;
 }
 
 /**
@@ -25,11 +24,11 @@ const ContentsTitle: FC<Props & {as?: any}> = ({
 }) => {
    return (
       <Styled.ContentsTitle className={className} {...props}>
-         <h2>{props.l}</h2>
+         <h2>{props.depth2}</h2>
          <ul>
             <li>홈</li>
-            <li>{props.l}</li>
-            <li className="arrowNone">{props.r}</li>
+            <li>{props.depth1}</li>
+            <li className="arrowNone">{props.depth2}</li>
          </ul>
 
       </Styled.ContentsTitle>

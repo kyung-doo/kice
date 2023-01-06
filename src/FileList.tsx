@@ -73,26 +73,26 @@ const FileList: FC = () => {
                   <td>컨설팅 일정</td>
                   <td></td>
                   <td><a href="/consulting-apply/consulting-schedule" target="_blank">/consulting-apply/consulting-schedule</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
                   <td rowSpan={3}>신청</td>
                   <td>컨설팅 신청 인트로</td>
                   <td><a href="/consulting-apply/apply-main" target="_blank">/consulting-apply/apply-main</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
                   <td>컨설팅 신청</td>
                   <td><a href="/consulting-apply/apply-write" target="_blank">/consulting-apply/apply-write</a></td>
-                  <td></td>
-                  <td></td>
+                  <td>임시완료</td>
+                  <td>유효성 검사 작업할 것</td>
                </tr>
                <tr>
                   <td>컨설팅 신청완료</td>
                   <td><a href="/consulting-apply/apply-comp" target="_blank">/consulting-apply/apply-comp</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>

@@ -12,7 +12,7 @@ const ApplyMain: FC = () => {
 
    return (
       <Styled.ApplyMain>
-         <ContentsTitle l={'컨설팅 신청'} r={'컨설팅 신청 및 보고'} />
+         <ContentsTitle depth2={'컨설팅 신청'} depth1={'컨설팅 신청 및 보고'} />
          <Styled.ContentsBody>
             <Button className="download">소개 리플렛 다운받기</Button>
             <h3>학생평가 컨설팅이란?</h3>

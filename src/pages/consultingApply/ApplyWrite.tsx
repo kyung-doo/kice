@@ -56,7 +56,7 @@ const ApplyWrite: FC = () => {
    
    return (
       <Styled.ApplyWrite>
-         <ContentsTitle l={'컨설팅 신청'} r={'컨설팅 신청 및 보고'} />
+         <ContentsTitle depth2={'컨설팅 신청'} depth1={'컨설팅 신청 및 보고'} />
          <div className="pt30 pb30">
             <h4 className="mb20">학교정보</h4>
             <table className="mb20">
@@ -247,13 +247,13 @@ const Styled = {
       table{
          width: 100%;
          tr{
-            border: 1px solid;
+            border: 1px solid #035d00;
          }
          th{
-            background: #eee;
+            background: #dcf1df;
          }
          td,th{
-            border-right: 1px solid;
+            border-right: 1px solid #035d00;
             padding: 10px;
          }
       }

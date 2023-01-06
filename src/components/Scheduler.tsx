@@ -65,6 +65,12 @@ const Scheduler: FC<Props & {as?: any}> = ({
    const [date, ] = useState<Date>(new Date());
    const [dates, setDates] = useState<{year:number, month:number, day: number, type: string, holiday?: string, luna?: string}[]>([]);
 
+   const month = date.getMonth() + 1;
+   const nowDate = date.getDate();
+   const tomorrow =  new Date(date.setDate(date.getDate() + 1));
+   const tDate = tomorrow.getDate();
+   const tMonth = tomorrow.getMonth() + 1;
+
    const setCalendar = ( date: Date ) => {
       
       const viewYear = date.getFullYear();
@@ -221,6 +227,21 @@ const Scheduler: FC<Props & {as?: any}> = ({
                   )
                })}
             </div>
+            <ul className="scheduleTable mt10">
+               <li>
+                  <div className="tit">오늘 일정<br/>
+                     {month}월{nowDate}일
+                  </div>
+                  <div className="pl10">오늘 일정이 없습니다.</div>
+               </li>
+               <li>
+                  <div className="tit">
+                     내일 일정<br/>
+                     {tMonth}월{tDate}일
+                  </div>
+                  <div className="pl10">내일 일정이 없습니다.</div>
+               </li>
+        </ul>
          </div>
       </Styled.Scheduler>
    );
@@ -291,6 +312,27 @@ const Styled = {
             .number > span {
                margin-left: 5px;
             }
+         }
+      }
+      .scheduleTable{
+         li{
+            border: 1px solid #6c9a9e;
+            display:flex;
+            &:first-child{
+               border-bottom: none;
+            }
+            .tit{
+               border-right: 1px solid #6c9a9e;
+               background: #b7fdff;
+               height: 50px;
+               width: 100px;
+            }
+            > div{
+               display: flex;
+               align-items: center;
+               justify-content: center;
+            }
+            
          }
       }
       
