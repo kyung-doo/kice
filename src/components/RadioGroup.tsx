@@ -15,6 +15,10 @@ export interface Props extends HTMLProps<HTMLDivElement> {
     * 라디오 선택 변경
     */
    onChange?: (value: any) => void;
+   /**
+    * 타이틀 있을시에
+    */
+   titld ?: string;
 }
 
 
@@ -29,15 +33,21 @@ const RadioGroup: FC<Props & {as?: any}> = ({
    arrow="ver",
    onChange,
    children,
+   title,
    ...props
 }) => {
 
    return (
+      <>
+         {
+            title && <div className="mb10">{title}</div>
+         }
       <Styled.RadioGroup className={className} arrow={arrow} {...props}>
          <RadioContext.Provider value={[value, onChange]}>
             {children}
          </RadioContext.Provider>
       </Styled.RadioGroup>
+      </>
    );
 }
 
@@ -50,7 +60,6 @@ const Styled = {
             margin-top: ${(props => props.arrow === 'ver' ? '10px' : 0)};
             margin-left: ${(props => props.arrow === 'hor' ? '10px' : 0)};
          }
-         
       }
    `,
 }

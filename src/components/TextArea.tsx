@@ -14,6 +14,10 @@ export interface Props extends HTMLProps<HTMLTextAreaElement> {
      * 높이
      */
     h ?: string;
+   /**
+    * textarea 타이틀
+    */
+   title ?: string;
 }
 
 /**
@@ -21,23 +25,27 @@ export interface Props extends HTMLProps<HTMLTextAreaElement> {
  */
 const TextArea: FC<Props & {as?: any}> = ({ 
    className,
-   placeholder = '내용을 입력해주세요.',
-   ...props
+   placeholder,
+   title,
+   h
 }) => {
-
    return (
-      <Styled.TextArea 
-      className={className} 
-      {...props}
-      />
+      <Styled.TextArea className={className} h={h}>
+         {
+            title && <div className="mb10">{title}</div>
+         }
+         <textarea placeholder={placeholder}></textarea>
+      </Styled.TextArea>
    );
 }
 
 const Styled = {
-   TextArea: styled.textarea<Props>`
-      width: 100%;
-      padding: 20px;
-      height: ${props => props.h};
+   TextArea: styled.div<Props>`
+      textarea{
+         width: 100%;
+         padding: 20px;
+         height: ${props => props.h};
+      }
    `,
 }
 

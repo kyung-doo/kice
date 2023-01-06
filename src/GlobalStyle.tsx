@@ -30,10 +30,20 @@ const GlobalStyle = createGlobalStyle`
       display:block;
    }
    textarea{
+      box-sizing: border-box;
       resize: none;
       &:focus{
          outline: none;
       }
+   }
+   table{
+    padding:0;
+    border:0;
+    border-spacing:0px;
+    border-collapse:collapse;
+   }
+   th, td{
+    padding:0;
    }
 
    /*space*/
