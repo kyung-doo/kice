@@ -35,7 +35,7 @@ const solarHolidays = [
    {month: 8, day: 15, name: '광복절'},
    {month: 10, day: 3, name: '개천절'},
    {month: 10, day: 9, name: '한글날'},
-   {month: 10, day: 9, name: '크리스마스'},
+   {month: 12, day: 25, name: '크리스마스'},
 ];
 
 const lunarHolidays = [
@@ -63,7 +63,7 @@ const Scheduler: FC<Props & {as?: any}> = ({
 }) => {
 
    const [date, ] = useState<Date>(new Date());
-   const [dates, setDates] = useState<{num: number, type: string, holiday?: string, luna?: string}[]>([]);
+   const [dates, setDates] = useState<{year:number, month:number, day: number, type: string, holiday?: string, luna?: string}[]>([]);
 
    const setCalendar = ( date: Date ) => {
       
@@ -88,30 +88,30 @@ const Scheduler: FC<Props & {as?: any}> = ({
       const toDay = new Date();
       for(let i=0; i<TLDate; i++) {
          if(viewMonth === toDay.getMonth() && viewYear === toDay.getFullYear() && i + 1 === toDay.getDate()){
-            thisDates.push({num: i+1, type: 'normal today'});
+            thisDates.push({year:viewYear, month: viewMonth, day: i+1, type: 'normal today'});
          } else {
-            thisDates.push({num: i+1, type: 'normal'});
+            thisDates.push({year:viewYear, month: viewMonth, day: i+1, type: 'normal'});
          }
       }
 
       if (PLDay !== 6) {
          for (let i = 0; i < PLDay + 1; i++) {
-            prevDates.unshift({num: PLDate - i, type: 'prev'});
+            prevDates.unshift({year:viewMonth === 0 ? viewYear-1 : viewYear, month: viewMonth-1 === -1 ? 11 : viewMonth-1, day: PLDate - i, type: 'prev'});
          }
       }
 
       for (let i = 1; i < 7 - TLDay; i++) {
-         nextDates.push({num: i, type: 'next'})
+         nextDates.push({year:viewMonth === 11 ? viewYear+1 : viewYear , month: viewMonth+1 === 12 ? 0 : viewMonth+1, day: i, type: 'next'})
       }
 
-      const dates: {num: number, type: string, holiday?: string, luna?: string}[] = prevDates.concat(thisDates, nextDates);
+      const dates: {year:number, month:number, day: number, type: string, holiday?: string, luna?: string}[] = prevDates.concat(thisDates, nextDates);
       dates.forEach((date, i) => {
-         const lunar = toLunar(viewYear, viewMonth+1, date.num);
-         const solarFind = solarHolidays.find(x => x.month === viewMonth+1 && x.day === date.num);
+         const solarFind = solarHolidays.find(x => x.month === date.month+1 && x.day === date.day);
          if(solarFind) {
             date.type = date.type + " holiday";
             date.holiday = solarFind.name;
          }
+         const lunar = toLunar(date.year, date.month+1, date.day);
          if(lunar){
             const lunarFind = lunarHolidays.find(x => x.month === lunar.month && x.day === lunar.day);
             if(lunarFind) {
@@ -132,7 +132,6 @@ const Scheduler: FC<Props & {as?: any}> = ({
    }, [date, dates]);
 
    const onPrevYear = useCallback(() => {
-      date.setMonth(1);
       date.setFullYear(date.getFullYear()-1);
       if(onChangeDate) onChangeDate(date.getFullYear(), date.getMonth()+1);
       setCalendar(date);
@@ -146,7 +145,6 @@ const Scheduler: FC<Props & {as?: any}> = ({
    }, [date, dates]);
 
    const onNextYear = useCallback(() => {
-      date.setMonth(1);
       date.setFullYear(date.getFullYear()+1);
       if(onChangeDate) onChangeDate(date.getFullYear(), date.getMonth()+1);
       setCalendar(date);
@@ -202,12 +200,12 @@ const Scheduler: FC<Props & {as?: any}> = ({
                         }
                      >
                         <div className="number">
-                           {date.num}
+                           {date.day}
                            {date.holiday && <span>{date.holiday}</span>}
                         </div>
-                        {findSchedule(date.num) && 
+                        {findSchedule(date.day) && 
                            <ul className="schedule-list">
-                              {findSchedule(date.num).lists.map((list: any) => (
+                              {findSchedule(date.day).lists.map((list: any) => (
                                  <li key={`schedule${list.scheduleId}`}>
                                     <Button 
                                        as='a' 
@@ -289,6 +287,9 @@ const Styled = {
             }
             &.today {
                background-color: #bdffbd;
+            }
+            .number > span {
+               margin-left: 5px;
             }
          }
       }
