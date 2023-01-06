@@ -1,4 +1,4 @@
-import { FC, HTMLProps } from "react";
+import { FC, HTMLProps, ChangeEvent } from "react";
 import styled from "styled-components";
 
 
@@ -13,7 +13,6 @@ export interface Props extends HTMLProps<HTMLInputElement> {
    w?: string;
 }
 
-
 /**
  * 텍스트 인풋 컴포넌트
  */
@@ -22,7 +21,10 @@ const Textbox: FC<Props & {as?: any}> = ({
    ...props
 }) => {
    return (
-      <Styled.Textbox className={className} {...props} />
+      <Styled.Textbox 
+      className={className} 
+      {...props} 
+      />
    );
 }
 

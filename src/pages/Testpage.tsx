@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useState, ChangeEvent } from "react";
 import styled from 'styled-components';
 import Pagination from "../components/Pagination";
 import Modal from "../components/Modal";
@@ -8,16 +8,16 @@ import RadioGroup from "../components/RadioGroup";
 import Radio from "../components/Radio";
 import Textarea from "../components/TextArea";
 import Scheduler from "../components/Scheduler";
+import BoardSearch from "../components/BoardSearch";
 
 
-// select
+// select 
 const selectOptions= [
    {label: 'option1', value: 'value1'},
    {label: 'option2', value: 'value2'},
    {label: 'option3', value: 'value3'},
    {label: 'option4', value: 'value4'},
 ]
-
 
 const Testpage: FC = () => {
    // 페이지네이션 
@@ -32,9 +32,8 @@ const Testpage: FC = () => {
    const [radioVal1, setLadioVal1] = useState<string>('value1');
    const [radioVal2, setLadioVal2] = useState<string>('value2');
    
-   // 텍스트박스
+   // textarea
    const [textVal, setTextval] = useState<any>('');
-
 
    // 스케쥴 데이터
    const [schduleData, setScheduleData] = useState<any[]>([
@@ -79,6 +78,13 @@ const Testpage: FC = () => {
    const onCickSchedule = useCallback(( scheduleId: string ) => {
       console.log('스케쥴 클릭: ', scheduleId);
    },[]);
+
+
+   // boardSearch 검색 클릭시
+   const onSearch = (type: string, keyword: string) : void => {
+      console.log(type);
+      console.log(keyword);
+   }
 
 
    return (
@@ -165,7 +171,12 @@ const Testpage: FC = () => {
             />
          </RadioGroup>
 
-         <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval}/>
+         <Textarea 
+         placeholder={'내용을 입력해주세요.'} 
+         value={textVal} 
+         onChange={(e:ChangeEvent<HTMLTextAreaElement>) => setTextval(e.target.value) } 
+         h={'100px'}/>
+
 
          {schduleData && 
             <Scheduler 
@@ -175,14 +186,20 @@ const Testpage: FC = () => {
             />
          }
 
+         <BoardSearch 
+            onSearch={onSearch} 
+            options={selectOptions}
+         />
+
       </Styled.Testpage>
+
    );
 }
 
 
 const Styled = {
    Testpage: styled.div`
-      
+   padding: 20px;
    `,
 }
 
