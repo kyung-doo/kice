@@ -35,9 +35,6 @@ const Testpage: FC = () => {
    // textarea
    const [textVal, setTextval] = useState<any>('');
 
-   // boardSearch
-   const [keyword, setKeyword] = useState<any>('');
-
 
    const onSearch = (type: string, keyword: string) : void => {
       console.log(type);

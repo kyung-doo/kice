@@ -34,7 +34,7 @@ const BoardSearch: FC<Props & {as?: any}> = ({
 
    return (
       <Styled.BoardSearch>
-         <Select options={options}/>
+         <Select options={options} defaultValue={type} />
          <Textbox value={keyword} onChange={setKeyword} />
          <Button onClick={(e : React.MouseEvent<HTMLButtonElement>) => onSearch && onSearch(type,keyword)}>검색</Button>
          <Button>등록</Button>
