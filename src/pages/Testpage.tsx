@@ -7,6 +7,7 @@ import Select from "../components/Select";
 import RadioGroup from "../components/RadioGroup";
 import Radio from "../components/Radio";
 import Textarea from "../components/TextArea";
+import Scheduler from "../components/Scheduler";
 
 
 // select
@@ -33,6 +34,52 @@ const Testpage: FC = () => {
    
    // 텍스트박스
    const [textVal, setTextval] = useState<any>('');
+
+
+   // 스케쥴 데이터
+   const [schduleData, setScheduleData] = useState<any[]>([
+      { 
+         date: '2023/01/10', 
+         lists: [
+            {
+               scheduleId: '0',
+               date: '일시 1월 10일 (화) 15:00 ~ 16:00',
+               title: '[온라인] 충남 태안여자고등학교 (이정운, 박진)',
+               consultant: '전미정, 전종식',
+               teacher: '김지숙 선생님'
+            },
+            {
+               scheduleId: '1',
+               date: '일시 1월 10일 (화) 15:00 ~ 16:00',
+               title: '[온라인] 제주 광령초등학교 (이윤섭, 손준호)',
+               consultant: '전미정, 전종식',
+               teacher: '김지숙 선생님'
+            }
+         ]
+      },
+      { 
+         date: '2023/01/24', 
+         lists: [
+            {
+               scheduleId: '3',
+               date: '일시 1월 24일 (화) 15:00 ~ 16:00',
+               title: '[온라인] 대구 이곡중학교 (전미정, 정종식)',
+               consultant: '전미정, 전종식',
+               teacher: '김지숙 선생님'
+            }
+         ]
+      }
+   ]);
+
+   const onChangeDate = useCallback(( year: number, month: number )=> {
+      console.log('달력 변경 year: ', year, 'month: ', month);
+      // ajax 처리후 setScheduleData 변경
+   },[]);
+
+   const onCickSchedule = useCallback(( scheduleId: string ) => {
+      console.log('스케쥴 클릭: ', scheduleId);
+   },[]);
+
 
    return (
       <Styled.Testpage>
@@ -119,6 +166,14 @@ const Testpage: FC = () => {
          </RadioGroup>
 
          <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval}/>
+
+         {schduleData && 
+            <Scheduler 
+               scheduleData={schduleData} 
+               onChangeDate={onChangeDate} 
+               onCickSchedule={onCickSchedule}
+            />
+         }
 
       </Styled.Testpage>
    );
