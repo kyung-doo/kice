@@ -40,7 +40,7 @@ const Select: FC<Props & {as?: any}> = ({
 const Styled = {
    Select: styled.div<Props>`
       width: ${props => props.w || ''};
-      .select__control{
+      > div, .select__control{
          height: 100%;
       }
    `,
