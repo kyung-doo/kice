@@ -65,9 +65,10 @@ const Scheduler: FC<Props & {as?: any}> = ({
    const [date, ] = useState<Date>(new Date());
    const [dates, setDates] = useState<{year:number, month:number, day: number, type: string, holiday?: string, luna?: string}[]>([]);
 
-   const month = date.getMonth() + 1;
-   const nowDate = date.getDate();
-   const tomorrow =  new Date(date.setDate(date.getDate() + 1));
+   const now = new Date();
+   const month = now.getMonth() + 1;
+   const nowDate = now.getDate();
+   const tomorrow =  new Date(now.setDate(now.getDate() + 1));
    const tDate = tomorrow.getDate();
    const tMonth = tomorrow.getMonth() + 1;
 
