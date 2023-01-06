@@ -9,15 +9,13 @@ import Radio from "../components/Radio";
 import Textarea from "../components/TextArea";
 import BoardSearch from "../components/BoardSearch";
 
-
-// select
+// select 
 const selectOptions= [
    {label: 'option1', value: 'value1'},
    {label: 'option2', value: 'value2'},
    {label: 'option3', value: 'value3'},
    {label: 'option4', value: 'value4'},
 ]
-
 
 const Testpage: FC = () => {
    // 페이지네이션 
@@ -35,7 +33,7 @@ const Testpage: FC = () => {
    // textarea
    const [textVal, setTextval] = useState<any>('');
 
-
+   // boardSearch 검색 클릭시
    const onSearch = (type: string, keyword: string) : void => {
       console.log(type);
       console.log(keyword);
@@ -124,7 +122,9 @@ const Testpage: FC = () => {
                value="value4"
             />
          </RadioGroup>
+
          <Textarea placeholder={'내용을 입력해주세요.'} value={textVal} onChange={setTextval} h={'100px'}/>
+         
          <BoardSearch 
          onSearch={onSearch} 
          options={selectOptions}
