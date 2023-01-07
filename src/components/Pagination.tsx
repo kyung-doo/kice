@@ -66,14 +66,14 @@ const Pagination: FC<Props & {as?: any}> = ({
                <>
                   <button onClick={()=>setCurrentPage(1)} disabled={groupCount === 1}>◀◀</button>
                   <button onClick={()=>{
-                     groupCount > 1 && setCurrentPage(firstPage - listView) 
+                     groupCount > 1 && setCurrentPage(firstPage - pageView) 
                   }} disabled={groupCount === 1}>◀</button>
                </>
             <ol style={{ display:'flex' }}>
                {showPageNum()}
             </ol>
             <button 
-            onClick={()=>{ groupCount < groupLength && setCurrentPage(firstPage + listView) }}
+            onClick={()=>{ groupCount < groupLength && setCurrentPage(firstPage + pageView) }}
             disabled={groupCount === groupLength}
             >▶</button>
             <button 

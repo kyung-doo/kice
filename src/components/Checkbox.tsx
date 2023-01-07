@@ -56,6 +56,7 @@ const Styled = {
          height: 20px;
          width: 20px;
          border: solid 1px #c7c7c7;
+         background-color: #fff;
       }
       .checkmark:after {
          content: "";

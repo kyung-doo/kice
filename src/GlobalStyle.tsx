@@ -211,6 +211,7 @@ const GlobalStyle = createGlobalStyle`
    .align-right{text-align:right}
    .align-centre{text-align:center}
    .hidden{display:none}
+   .flex-center{display: flex;align-items: cneter;justify-content: center}
    
 
    html, body {

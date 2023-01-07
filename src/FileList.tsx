@@ -121,10 +121,10 @@ const FileList: FC = () => {
                   <td></td>
                </tr>
                <tr>
-                  <td>컨설팅 학교선택</td>
+                  <td>컨설팅 학교 선택</td>
                   <td>목록</td>
                   <td><a href="/consulting-apply/choose-school-board" target="_blank">/consulting-apply/choose-school-board</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
 
