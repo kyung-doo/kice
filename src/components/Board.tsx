@@ -89,10 +89,12 @@ const Board: FC<Props & {as?: any}> = ({
          <div className="board-head">
             {useCHeckbox && 
                <div className="title" style={{width: '3%'}}>
-                  <Checkbox 
-                     checked={checkAll} 
-                     onChange={() => onCHangeAllCheck(!checkAll)} 
-                  />
+                  {baordEl && baordEl.length > 0 &&
+                     <Checkbox 
+                        checked={checkAll} 
+                        onChange={() => onCHangeAllCheck(!checkAll)} 
+                     />
+                  }  
                </div>
             }
             <div className="title" style={{width: '3%'}}></div>
