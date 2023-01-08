@@ -52,7 +52,7 @@ const schoolOptions = [
 // dummy 보드 데이터
 const boardData = {
    currentPage: 1,
-   listLength: 350,
+   listLength: 345,
    listView: 15,
    lists: [{}]
 };
@@ -124,7 +124,7 @@ const ChooseSchoolBoard: FC = () => {
          </div>
          <Board
             useCHeckbox={true}
-            currentPage={boardData.currentPage}
+            currentPage={currentPage}
             listView={boardData.listView}
             listLength={boardData.listLength}
             boardTItle={boarderTitle}

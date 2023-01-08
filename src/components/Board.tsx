@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext, FC, HTMLProps, useState } from "react";
+import { FC, HTMLProps, useCallback, useEffect, useRef, useState } from "react";
 import styled from 'styled-components';
 import Checkbox from "./Checkbox";
 
@@ -46,6 +46,42 @@ const Board: FC<Props & {as?: any}> = ({
 }) => {
 
    const [checkAll, setCheckAll] = useState<boolean>(false);
+   const [listCheck, setListCheck] = useState<boolean[]>(Array(baordEl?.length).fill(false));
+   const islistCheck = useRef<boolean>(false);
+   const isAllCheck = useRef<boolean>(false);
+
+   const onChangeListCheck = useCallback(( idx: number, value: boolean ) => {
+      listCheck[idx] = value;
+      islistCheck.current = true;
+      setListCheck([...listCheck]);
+      setTimeout(()=> islistCheck.current = false, 100);
+   }, [listCheck]);
+
+   const onCHangeAllCheck = useCallback(( value: boolean ) => {
+      isAllCheck.current = true;
+      setCheckAll(value);
+      if(islistCheck.current) return;
+      if(value) {
+         setListCheck(Array(baordEl?.length).fill(true));
+      } else {
+         setListCheck(Array(baordEl?.length).fill(false));
+      }
+      setTimeout(()=> isAllCheck.current = false, 100);
+   }, []);
+
+   useEffect(() => {
+      if(isAllCheck.current) return;
+      let count = 0;
+      listCheck.forEach(check => check && count++);
+      if(count === baordEl?.length) setCheckAll(true);
+      else                          setCheckAll(false);
+   }, [listCheck]);
+
+   useEffect(() => {
+      setListCheck(Array(baordEl?.length).fill(false));
+      isAllCheck.current = false;
+      islistCheck.current = false;
+   }, [currentPage]);
 
    return (
       <Styled.Board className={className} {...props}>
@@ -55,7 +91,7 @@ const Board: FC<Props & {as?: any}> = ({
                <div className="title" style={{width: '3%'}}>
                   <Checkbox 
                      checked={checkAll} 
-                     onChange={() => setCheckAll(!checkAll)} 
+                     onChange={() => onCHangeAllCheck(!checkAll)} 
                   />
                </div>
             }
@@ -71,7 +107,9 @@ const Board: FC<Props & {as?: any}> = ({
                   <div key={`board-list-${i}`} className="list">
                      {useCHeckbox && 
                         <div style={{width: '3%'}}>
-                           <Checkbox />
+                           <Checkbox
+                              checked={listCheck[i]}
+                              onChange={() => onChangeListCheck(i, !listCheck[i])} />
                         </div>
                      }
                      <div style={{width: '3%'}}>{listLength - (listView * (currentPage -1)) - i}</div>
