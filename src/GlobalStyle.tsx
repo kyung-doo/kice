@@ -41,10 +41,20 @@ const GlobalStyle = createGlobalStyle`
     border:0;
     border-spacing:0px;
     border-collapse:collapse;
+    width: 100%;
+    tr{
+      border: 1px solid #ddd;
+       th,td{
+          padding: 0;
+         }
+         
+         th{
+            background: #ccc;
+            border-right: 1px solid #ddd;
+         }
+      }
    }
-   th, td{
-    padding:0;
-   }
+
 
    /*space*/
    .pl1{padding-left:1px;}
@@ -209,9 +219,11 @@ const GlobalStyle = createGlobalStyle`
    .mb60{margin-bottom:60px;}
 
    .align-right{text-align:right}
-   .align-centre{text-align:center}
+   .align-center{text-align:center}
    .hidden{display:none}
-   .flex-center{display: flex;align-items: cneter;justify-content: center}
+   .flex-center{display: flex;align-items: center;justify-content: center}
+   .flex-between{display: flex;align-items: center;justify-content: space-between;}
+   .b-none{border: none !important;}
    
 
    html, body {

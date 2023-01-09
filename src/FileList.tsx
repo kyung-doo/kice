@@ -105,7 +105,7 @@ const FileList: FC = () => {
                <tr>
                   <td>결과보고서 작성</td>
                   <td><a href="/consulting-apply/report-wirte1" target="_blank">/consulting-apply/report-wirte1</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
