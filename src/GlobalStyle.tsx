@@ -36,6 +36,8 @@ const GlobalStyle = createGlobalStyle`
          outline: none;
       }
    }
+
+   /* 임시 table 스타일 */
    table{
     padding:0;
     border:0;
@@ -45,9 +47,8 @@ const GlobalStyle = createGlobalStyle`
     tr{
       border: 1px solid #ddd;
        th,td{
-          padding: 0;
+          padding: 10px;
          }
-         
          th{
             background: #ccc;
             border-right: 1px solid #ddd;

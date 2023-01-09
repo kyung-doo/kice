@@ -11,6 +11,11 @@ export interface Props extends HTMLProps<HTMLInputElement> {
     * width 값
     */
    w?: string;
+   /**
+    * 텍스트 입력시
+    */
+   onChange ?: (e: ChangeEvent<HTMLInputElement>) => void;
+   
 }
 
 /**
@@ -20,6 +25,7 @@ const Textbox: FC<Props & {as?: any}> = ({
    className, 
    ...props
 }) => {
+
    return (
       <Styled.Textbox 
       className={className} 

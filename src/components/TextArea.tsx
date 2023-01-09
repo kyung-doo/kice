@@ -6,10 +6,6 @@ export interface Props extends HTMLProps<HTMLTextAreaElement> {
     * placeholder
     */
    placehoder ?: string;
-   /**
-    * 텍스트 입력시
-    */
-    onChange?: (value: any) => void;
     /**
      * 높이
      */
@@ -18,6 +14,10 @@ export interface Props extends HTMLProps<HTMLTextAreaElement> {
     * textarea 타이틀
     */
    title ?: string;
+   /**
+    * 텍스트 입력시
+    */
+    onChange ?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 /**
@@ -25,19 +25,20 @@ export interface Props extends HTMLProps<HTMLTextAreaElement> {
  */
 const TextArea: FC<Props & {as?: any}> = ({ 
    className,
-   placeholder,
+   h,
    title,
-   h
+   ...props
 }) => {
    return (
       <Styled.TextArea className={className} h={h}>
          {
             title && <div className="mb10">{title}</div>
          }
-         <textarea placeholder={placeholder}></textarea>
+         <textarea {...props}></textarea>
       </Styled.TextArea>
    );
 }
+
 
 const Styled = {
    TextArea: styled.div<Props>`
