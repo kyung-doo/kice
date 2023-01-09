@@ -1,15 +1,13 @@
 import { FC, useCallback, useState } from "react";
 import styled from 'styled-components';
 import withLayout from "../../layout/withLayout";
-
-
-
+import ContentsTitle from "../../components/ContentsTitle";
 
 const NowConsulting: FC = () => {
 
    return (
       <Styled.NowConsulting>
-         컨설팅 공간 / 본 컨설팅
+         <ContentsTitle depth1={'컨설팅 공간'} depth2={'본 컨설팅'}  />
       </Styled.NowConsulting>
    );
 }

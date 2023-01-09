@@ -7,7 +7,6 @@ import Textbox from "../../components/Textbox";
 import Checkbox from "../../components/Checkbox";
 import TextArea from "../../components/TextArea";
 
-// 컨설팅 신청 및 보고 > 컨설팅 보고서 제출
 // 결과보고서
 const ReportWrite1: FC = () => {
    // 학교명

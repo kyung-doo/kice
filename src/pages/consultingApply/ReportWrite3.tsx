@@ -7,6 +7,7 @@ import Textbox from "../../components/Textbox";
 import Checkbox from "../../components/Checkbox";
 import TextArea from "../../components/TextArea";
 
+// 최종결과보고서
 const ReportWrite3: FC = () => {
    // 학교명
    const [A_1,setA_1] = useState<string>('');

@@ -87,7 +87,7 @@ const FileList: FC = () => {
                   <td>컨설팅 신청</td>
                   <td><a href="/consulting-apply/apply-write" target="_blank">/consulting-apply/apply-write</a></td>
                   <td>임시완료</td>
-                  <td>유효성 검사 작업할 것</td>
+                  <td>Form</td>
                </tr>
                <tr>
                   <td>컨설팅 신청완료</td>
@@ -106,19 +106,19 @@ const FileList: FC = () => {
                   <td>결과보고서 작성</td>
                   <td><a href="/consulting-apply/report-wirte1" target="_blank">/consulting-apply/report-wirte1</a></td>
                   <td>임시완료</td>
-                  <td></td>
+                  <td>Form</td>
                </tr>
                <tr>
                   <td>사전협의서 작성</td>
                   <td><a href="/consulting-apply/report-wirte2" target="_blank">/consulting-apply/report-wirte2</a></td>
-                  <td></td>
-                  <td></td>
+                  <td>임시완료</td>
+                  <td>Form</td>
                </tr>
                <tr>
                   <td>최종결과보고서 작성</td>
                   <td><a href="/consulting-apply/report-wirte3" target="_blank">/consulting-apply/report-wirte3</a></td>
-                  <td></td>
-                  <td></td>
+                  <td>임시완료</td>
+                  <td>Form</td>
                </tr>
                <tr>
                   <td>컨설팅 학교 선택</td>
@@ -134,7 +134,7 @@ const FileList: FC = () => {
                   <td>사전협의안내</td>
                   <td></td>
                   <td><a href="/consulting-space/pre-conference" target="_blank">/consulting-space/pre-conference</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -148,7 +148,7 @@ const FileList: FC = () => {
                   <td>Q&A</td>
                   <td>목록</td>
                   <td><a href="/consulting-space/qna-board" target="_blank">/consulting-space/qna-board</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
 
@@ -158,7 +158,7 @@ const FileList: FC = () => {
                   <td rowSpan={2}>컨설팅자료</td>
                   <td>목록</td>
                   <td><a href="/reference/consulting-board" target="_blank">/reference/consulting-board</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -171,7 +171,7 @@ const FileList: FC = () => {
                   <td>학생평가자료</td>
                   <td>목록</td>
                   <td><a href="/reference/student-board" target="_blank">/reference/student-board</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
 
@@ -182,7 +182,7 @@ const FileList: FC = () => {
                   <td rowSpan={2}>공지사항</td>
                   <td>목록</td>
                   <td><a href="/consulting-center/notice-board" target="_blank">/consulting-center/notice-board</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -195,7 +195,7 @@ const FileList: FC = () => {
                   <td rowSpan={2}>FAQ</td>
                   <td>목록</td>
                   <td><a href="/consulting-center/faq-board" target="_blank">/consulting-center/faq-board</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>

@@ -114,7 +114,7 @@ const Board: FC<Props & {as?: any}> = ({
                               onChange={() => onChangeListCheck(i, !listCheck[i])} />
                         </div>
                      }
-                     <div style={{width: '3%'}}>{listLength - (listView * (currentPage -1)) - i}</div>
+                     <div style={{width: '3%'}}>{listLength - (listView * (currentPage -1)) - i > 0 && listLength - (listView * (currentPage -1)) - i}</div>
                      {el}
                   </div>
                ))
