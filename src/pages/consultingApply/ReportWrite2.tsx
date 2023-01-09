@@ -10,6 +10,20 @@ import TextArea from "../../components/TextArea";
 // 컨설팅 신청 및 보고 > 컨설팅 보고서 제출
 // 사전협의서
 const ReportWrite2: FC = () => {
+ // 학교명
+ const [A_1,setA_1] = useState<string>('');
+ //  일시
+ const [B_1,setB_1] = useState<string>('');
+ // 컨설턴트 이름
+ const [C_1,setC_1] = useState<string>('');
+ // 컨설턴트 이름
+ const [C_2,setC_2] = useState<string>('');
+ // 수혜학교-컨설턴트 간 사전 협의사항
+ const [D_1,setD_1] = useState<string>('');
+ // 컨설턴트 간 사전 협의사항
+ const [E_1,setE_1] = useState<string>('');
+ // 기타사항
+ const [F_1,setF_1] = useState<string>('');
 
    return (
       <Styled.ReportWrite2>
@@ -34,15 +48,15 @@ const ReportWrite2: FC = () => {
                <tbody>
                   <tr>
                      <th>컨설팅 학교명</th>
-                     <td><Textbox /></td>
+                     <td><Textbox value={A_1} onChange={(e) => setA_1(e.target.value)}/></td>
                      <th>컨설팅 일시</th>
-                     <td><Textbox /></td>
+                     <td><Textbox value={B_1} onChange={(e) => setB_1(e.target.value)}/></td>
                   </tr>
                   <tr>
                      <th rowSpan={2}>컨설턴트</th>
                      <td className="flex-between" colSpan={2}>
                         <span>성명</span>
-                        <Textbox />
+                        <Textbox value={C_1} onChange={(e) => setC_1(e.target.value)}/>
                         <Checkbox label='서명' labelArrow='left' />   
                         <span>소속(직위)</span>
                      </td>
@@ -50,16 +64,28 @@ const ReportWrite2: FC = () => {
                   <tr>
                      <td className="flex-between" colSpan={2}>
                         <span>성명</span>
-                        <Textbox />
+                        <Textbox value={C_2} onChange={(e) => setC_2(e.target.value)} />
                         <Checkbox label='서명' labelArrow='left' />   
                         <span>소속(직위)</span>
                      </td>
                   </tr>
                </tbody>
             </table>
-            <TextArea title='수혜학교-컨설턴트 간 사전 협의 사항' className="mb20"/>
-            <TextArea title='컨설턴트 간 사전 협의사항' className="mb20"/>
-            <TextArea title='기타사항' className="mb20"/>
+            <TextArea 
+            title='수혜학교-컨설턴트 간 사전 협의 사항' 
+            className="mb20"
+            value={D_1} onChange={(e) => setD_1(e.target.value)}
+            />
+            <TextArea 
+            title='컨설턴트 간 사전 협의사항' 
+            className="mb20"
+            value={E_1} onChange={(e) => setE_1(e.target.value)}
+            />
+            <TextArea 
+            title='기타사항' 
+            className="mb20"
+            value={F_1} onChange={(e) => setF_1(e.target.value)}
+            />
          </div>
       </Styled.ReportWrite2>
    );

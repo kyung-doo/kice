@@ -63,9 +63,13 @@ const ReportWrite1: FC = () => {
                   </tr>
                </tbody>
             </table>
-            <TextArea title='컨설팅 영역' className="mb20"/>
-            <TextArea title='컨설팅 주요 내용 (간략히 작성)' className="mb20"/>
-            <TextArea title='컨설팅 내용을 반영한 2022학년도 2학기(또는 2023학년도 1학기) 학생평가 계획안(간략히 작성)' className="mb20"/>
+            <TextArea title='컨설팅 영역' className="mb20" value={E_1} onChange={(e) => setE_1(e.target.value)}/>
+            <TextArea title='컨설팅 주요 내용 (간략히 작성)' className="mb20" value={F_1} onChange={(e) => setF_1(e.target.value)}/>
+            <TextArea 
+               title='컨설팅 내용을 반영한 2022학년도 2학기(또는 2023학년도 1학기) 학생평가 계획안(간략히 작성)' 
+               className="mb20"
+               value={G_1} onChange={(e) => setG_1(e.target.value)}
+            />
          </div>
          <div className="con-foot align-center">
             <p>위와 같이『2022년학생평가컨설팅』결과보고서를 제출합니다.</p>
