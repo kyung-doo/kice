@@ -42,7 +42,7 @@ const Modal: FC<Props & {as?: any}> = ({
             <div className="modal-footer">
                 {foot}
             </div>
-         </div>
+        </div>
      </Styled.Modal>
    );
 }
@@ -59,20 +59,31 @@ const Styled = {
     .modal{
         &-content{
             width: 500px;
-            height: 500px;
-            background: #ccc;
+            min-height: 500px;
+            background: #fff;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             display: flex;
-            justify-content: space-between;
             flex-direction: column;
+
         }
         &-header{
             display:flex;
             align-items: center;
             justify-content: space-between;
+        }
+        &-body{
+            padding: 20px 10px;
+        }
+        &-footer{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+
         }
     }
    `,
