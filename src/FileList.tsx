@@ -232,16 +232,15 @@ const FileList: FC = () => {
                   <td>나의 문의</td>
                   <td></td>
                   <td><a href="/mypage/my-faq" target="_blank">/mypage/my-faq</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
                   <td>받은 쪽지</td>
                   <td></td>
                   <td><a href="/mypage/receive-note" target="_blank">/mypage/receive-note</a></td>
+                  <td>임시완료</td>
                   <td></td>
-                  <td>
-                  </td>
                </tr>
                <tr>
                   <td>나의 정보</td>
