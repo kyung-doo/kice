@@ -208,7 +208,7 @@ const FileList: FC = () => {
                   <td rowSpan={2}>Q&A</td>
                   <td>목록</td>
                   <td><a href="/consulting-center/qna-board" target="_blank">/consulting-center/qna-board</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -225,7 +225,7 @@ const FileList: FC = () => {
                   <td>나의 컨설팅 일정</td>
                   <td></td>
                   <td><a href="/mypage/my-schedule" target="_blank">/mypage/my-schedule</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -240,7 +240,8 @@ const FileList: FC = () => {
                   <td></td>
                   <td><a href="/mypage/receive-note" target="_blank">/mypage/receive-note</a></td>
                   <td></td>
-                  <td></td>
+                  <td>
+                  </td>
                </tr>
                <tr>
                   <td>나의 정보</td>

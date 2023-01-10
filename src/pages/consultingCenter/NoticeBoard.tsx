@@ -57,7 +57,7 @@ const NoticeBoard: FC = () => {
 
    return (
       <Styled.NoticeBoard>
-         <ContentsTitle depth1={'마이페이지'} depth2={'공지사항'} />
+         <ContentsTitle depth1={'컨설팅 센터'} depth2={'공지사항'} />
          <div className="board-top flex-end">
             <BoardSearch 
                onSearch={onSearch} 

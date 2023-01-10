@@ -55,7 +55,7 @@ const FaqBoard: FC = () => {
 
    return (
       <Styled.FaqBoard>
-         <ContentsTitle depth1={'마이페이지'} depth2={'FAQ'} />
+         <ContentsTitle depth1={'컨설팅 센터'} depth2={'FAQ'} />
          <div className="board-top flex-end">
             <BoardSearch 
                onSearch={onSearch} 

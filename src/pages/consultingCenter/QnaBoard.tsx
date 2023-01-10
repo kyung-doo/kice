@@ -18,8 +18,10 @@ const searchOptions = [
 
 // 보드 타이틀
 const boarderTitle = [
-   {name: '구분', w: '20%'},
-   {name: '제목', w: '80%'},
+   {name: '제목', w: '70%'},
+   {name: '등록일', w: '10%'},
+   {name: '등록자', w: '10%'},
+   {name: '처리상태', w: '10%'},
 ];
 // dummy 보드 데이터
 const boardData = {
@@ -33,8 +35,11 @@ const lists: {}[] = [];
 Array.from(Array(boardData.listView), (k, i) => lists.push({
    listId: 0,
    title: '학업성적관리규정 및 3학년 2학기 평가계획(영어)',
-   dataType: '성적관리'
+   registrant: '김선생',
+   regDate: '2022-12-01',
+   status: '답변대기',
 }));
+
 boardData.lists = lists;
 
 const QnaBoard: FC = () => {
@@ -55,7 +60,7 @@ const QnaBoard: FC = () => {
 
    return (
       <Styled.QnaBoard>
-         <ContentsTitle depth1={'마이페이지'} depth2={'FAQ'} />
+         <ContentsTitle depth1={'컨설팅 센터'} depth2={'Q&A'} />
          <div className="board-top flex-end">
             <BoardSearch 
                onSearch={onSearch} 
@@ -70,8 +75,10 @@ const QnaBoard: FC = () => {
             boardTItle={boarderTitle}
             baordEl={boardData && boardData.lists.map(( data: any, i ) => (
                <>
-                  <div style={{width: boarderTitle[0].w}}>{data.dataType}</div>
-                  <div style={{width: boarderTitle[1].w}}>{data.title}</div>
+                  <div style={{width: boarderTitle[0].w}}>{data.title}</div>
+                  <div style={{width: boarderTitle[1].w}}>{data.registrant}</div>
+                  <div style={{width: boarderTitle[2].w}}>{data.regDate}</div>
+                  <div style={{width: boarderTitle[3].w}}>{data.status}</div>
                </>
             ))}
          />
