@@ -142,7 +142,7 @@ const FileList: FC = () => {
                   <td></td>
                   <td><a href="/consulting-space/now-consulting" target="_blank">/consulting-space/now-consulting</a></td>
                   <td></td>
-                  <td></td>
+                  <td style={{ color: 'red' }}>추후 개발</td>
                </tr>
                <tr>
                   <td>Q&A</td>
@@ -253,7 +253,7 @@ const FileList: FC = () => {
                   <td>쪽지, 문자관리</td>
                   <td></td>
                   <td><a href="/mypage/admin-note" target="_blank">/mypage/admin-note</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td><strong style={{color: 'red'}}>관리자 전용</strong></td>
                </tr>
                
