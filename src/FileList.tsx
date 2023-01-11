@@ -164,7 +164,7 @@ const FileList: FC = () => {
                <tr>
                   <td>보기</td>
                   <td><a href="/reference/consulting-view" target="_blank">/reference/consulting-view</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -188,7 +188,7 @@ const FileList: FC = () => {
                <tr>
                   <td>보기</td>
                   <td><a href="/consulting-center/notice-view" target="_blank">/consulting-center/notice-view</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -201,7 +201,7 @@ const FileList: FC = () => {
                <tr>
                   <td>보기</td>
                   <td><a href="/consulting-center/faq-view" target="_blank">/consulting-center/faq-view</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
@@ -214,7 +214,7 @@ const FileList: FC = () => {
                <tr>
                   <td>보기</td>
                   <td><a href="/consulting-center/qna-view" target="_blank">/consulting-center/qna-view</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
 

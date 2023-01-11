@@ -17,7 +17,7 @@ const Header:FC = () => {
       console.log("경로: ", location);
    }, [location]);
 
-
+console.log(userData);
    return (
       <Styled.Header>
          header 영역
