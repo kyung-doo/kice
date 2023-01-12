@@ -11,17 +11,17 @@ export interface Props extends HTMLProps<HTMLDivElement> {
     */
    isComment ?: boolean;
    /**
-    * 콘텐츠 내용
+    * 답변기능 유무
     */
-   contents ?: any;
+   isAnswer ?: boolean;
    /**
     * 콘텐츠 정보
     */
    info ?: any;
    /**
-    * 답변기능 유무
+    * 콘텐츠 내용
     */
-   isAnswer ?: boolean;
+   contents ?: any;
 
 }
 
@@ -77,7 +77,7 @@ const BoardView: FC<Props & {as?: any}> = ({
                {contents.con}
             </div>
             {
-               isComment ? (
+               isComment && (
                <div className="comment">
                   <div className="comment-input">
                         <TextArea 
@@ -101,7 +101,8 @@ const BoardView: FC<Props & {as?: any}> = ({
                      cmmtList.map((item:any)=>{
                         return(
                            <li key={item.idx}>
-                              <div style={{ width: '10%' }}>{userData.id}</div>
+                              {/* <div style={{ width: '10%' }}>{userData.id}</div> */}
+                              <div style={{ width: '10%' }}>사용자</div>
                               <div style={{ width: '90%' }}>{item.txt}</div>
                               <Button onClick={()=>removeCmmt(item.idx)}>X</Button>
                            </li>
@@ -110,7 +111,7 @@ const BoardView: FC<Props & {as?: any}> = ({
                      }
                   </ul>
                </div>
-               ) : ''
+               ) 
             }
             {
                isAnswer && (
@@ -124,13 +125,13 @@ const BoardView: FC<Props & {as?: any}> = ({
                )
             }
             <div className="prevNext mb10">
-               <div className="line">
-                  <div className="l">▲ 다음 글</div>
-                  <div className="r">{contents.nextPage.tit}</div>
+               <div className={`line ${ contents.nextPage ? '' : 'disabled' }`}>
+                  <div className="l">{ contents.nextPage?.tit && '▲ 다음 글' }</div>
+                  <div className="r pl10">{ contents.nextPage?.tit }</div>
                </div>
-               <div className="line">
-                  <div className="l">▼ 다음 글</div>
-                  <div className="r">{contents.prePage.tit}</div>
+               <div className={`line ${ contents.prePage ? '' : 'disabled' }`}>
+                  <div className="l">{ contents.prePage?.tit && '▼ 이전 글' }</div>
+                  <div className="r pl10">{ contents.prePage?.tit }</div>
                </div>
             </div>
          </div>
@@ -200,18 +201,23 @@ const Styled = {
             .line{
                display: flex;
                border-bottom: 1px solid #ccc;
+               height: 40px;
                cursor: pointer;
+               .l,.r{
+                  display: flex;
+                  align-items: center;
+               }
                .l{
                   border-right: 1px solid #ccc;
-                  padding:10px;
                   background: #ddd;
+                  width: 100px;
+                  justify-content: center;
                }
-               .r{
-                  padding: 10px;
+               &.disabled{
+                  cursor: default;
                }
             }
          }
-      }
      &-foot{
         display: flex;
         justify-content: flex-end;

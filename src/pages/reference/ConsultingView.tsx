@@ -30,11 +30,7 @@ const ConsultingView: FC = () => {
                txt: '댓글입니다.'
             },
          ],
-         prePage:{
-            pageId : 13,
-            tit: '이전글 타이틀'
-         },
-         
+         prePage: null,
          nextPage:{
             pageId : 15,
             tit: '다음글 타이틀'

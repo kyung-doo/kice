@@ -30,10 +30,7 @@ const lists = [
          tit: '이전글 타이틀'
       },
       
-      nextPage:{
-         pageId : 15,
-         tit: '다음글 타이틀'
-      }
+      nextPage: null,
    }];
 
 const NoticeView: FC = () => {
