@@ -246,7 +246,7 @@ const FileList: FC = () => {
                   <td>나의 정보</td>
                   <td></td>
                   <td><a href="/mypage/my-info" target="_blank">/mypage/my-info</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
                <tr>
