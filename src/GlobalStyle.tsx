@@ -222,6 +222,8 @@ const GlobalStyle = createGlobalStyle`
    .align-right{text-align:right}
    .align-center{text-align:center}
    .hidden{display:none}
+   .flex{display: flex}
+   .flex-align{display: flex; align-items: center;}
    .flex-center{display: flex;align-items: center;justify-content: center}
    .flex-between{display: flex;align-items: center;justify-content: space-between;}
    .flex-end{display: flex;align-items: center;justify-content: flex-end;}

@@ -177,7 +177,6 @@ const Testpage: FC = () => {
          onChange={(e:ChangeEvent<HTMLTextAreaElement>) => setTextval(e.target.value) } 
          h={'100px'}/>
 
-
          {schduleData && 
             <Scheduler 
                scheduleData={schduleData} 

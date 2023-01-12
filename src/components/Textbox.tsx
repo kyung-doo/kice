@@ -1,4 +1,4 @@
-import { FC, HTMLProps, ChangeEvent } from "react";
+import { FC, HTMLProps, ChangeEvent, forwardRef } from "react";
 import styled from "styled-components";
 
 
@@ -15,7 +15,6 @@ export interface Props extends HTMLProps<HTMLInputElement> {
     * 텍스트 입력시
     */
    onChange ?: (e: ChangeEvent<HTMLInputElement>) => void;
-   
 }
 
 /**
