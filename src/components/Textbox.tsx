@@ -19,6 +19,11 @@ export interface Props extends HTMLProps<HTMLInputElement> {
     * 텍스트 입력시
     */
    onChange ?: (e: ChangeEvent<HTMLInputElement>) => void;
+   /**
+    * input 타입
+    */
+   type ?: string;
+   
 }
 
 /**

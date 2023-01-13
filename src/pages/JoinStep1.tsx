@@ -101,8 +101,7 @@ const Styled = {
          background: #fff;
          padding: 30px 10px;
          border: 1px solid;
-      }
-      
+      }     
    `,
 }
 

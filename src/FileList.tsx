@@ -45,7 +45,7 @@ const FileList: FC = () => {
                   <td></td>
                   <td><a href="/join" target="_blank">/join</a></td>
                   <td></td>
-                  <td></td>
+                  <td>Form</td>
                </tr>
                <tr>
                   <td>아이디/비밀번호 찾기</td>
@@ -247,7 +247,7 @@ const FileList: FC = () => {
                   <td></td>
                   <td><a href="/mypage/my-info" target="_blank">/mypage/my-info</a></td>
                   <td>임시완료</td>
-                  <td></td>
+                  <td>Form</td>
                </tr>
                <tr>
                   <td>쪽지, 문자관리</td>

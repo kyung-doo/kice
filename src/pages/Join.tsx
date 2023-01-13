@@ -22,7 +22,7 @@ const Join: FC = () => {
             </ol>
             {
               {
-                  0 : <JoinStep1 setStep={setStep}/>,
+                  0 : <JoinStep1 setStep={setStep} />,
                   1 : <JoinStep2 setStep={setStep} />,
                   2 : <JoinStep3 setStep={setStep} />,
               }[step]

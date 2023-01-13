@@ -53,6 +53,9 @@ const GlobalStyle = createGlobalStyle`
             background: #ccc;
             border-right: 1px solid #ddd;
          }
+         td{
+            background: #fff;
+         }
       }
    }
 
