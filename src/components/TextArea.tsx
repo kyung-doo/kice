@@ -36,12 +36,12 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props & {as?: any}>(({
 }, ref) => {
    return (
       <>
-          <Styled.TextArea className={className} h={h}>
+          <Styled.TextArea className={`${className} ${error ? 'error' : ''}`} h={h}>
             {
                title && <div className="mb10">{title}</div>
             }
-            <textarea {...props}></textarea>
-            {error && <Styled.Error>{error}</Styled.Error>}
+            <textarea ref={ref} {...props}></textarea>
+            {(error && typeof error === 'string') && <Styled.Error>{error}</Styled.Error>}
          </Styled.TextArea>
       </>
    );
@@ -54,6 +54,10 @@ const Styled = {
          width: 100%;
          padding: 20px;
          height: ${props => props.h};
+         
+      }
+      &.error textarea {
+         border-color: red;
       }
    `,
    Error: styled.p`

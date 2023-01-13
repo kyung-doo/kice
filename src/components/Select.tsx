@@ -42,7 +42,7 @@ const Select = forwardRef<any, Props & {as?: any}>(({
                {...props} 
             />
          </Styled.Select>
-         {error && <Styled.Error>{error}</Styled.Error>}
+         {(error && typeof error === 'string') && <Styled.Error>{error}</Styled.Error>}
       </>
       
    );

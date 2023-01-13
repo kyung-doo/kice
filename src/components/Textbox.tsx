@@ -41,7 +41,7 @@ const Textbox = forwardRef<HTMLInputElement, Props & {as?: any}>(({
             className={`${className} ${error ? 'error' : ''}`} 
             {...props}
          />
-         {error && <Styled.Error>{error}</Styled.Error>}
+         {(error && typeof error === 'string') && <Styled.Error>{error}</Styled.Error>}
       </>
    );
 });

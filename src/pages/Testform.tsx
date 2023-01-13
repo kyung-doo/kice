@@ -112,6 +112,7 @@ const Testform: FC = () => {
                   <Textbox
                      w="200px"
                      {...register('email1')}
+                     error={errors.email1?.message ? true : false}
                   />
                   <span className="ml5">@</span>
                   <Textbox
@@ -119,6 +120,7 @@ const Testform: FC = () => {
                      className="ml5"
                      readOnly={!emailSite ? true : emailSite.value === 'direct' ? false : true }
                      {...register('email2')}
+                     error={errors.email2?.message ? true : false}
                   />
                   <Select
                      w="200px"
