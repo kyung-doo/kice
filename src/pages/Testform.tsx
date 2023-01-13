@@ -97,6 +97,16 @@ const Testform: FC = () => {
             </div>
 
             <div className="pb30">
+               <Textbox 
+                  f
+                  type="password"
+                  placeholder="비밀번호 확인" 
+                  {...register('confirmPassword')}
+                  error={errors.confirmPassword?.message} 
+               />
+            </div>
+
+            <div className="pb30">
                <h1>이메일</h1>
                <div className="flex-align mt10">
                   <Textbox
@@ -127,16 +137,6 @@ const Testform: FC = () => {
                   />
                </div>
                <div className="mt5" style={{color: 'red'}}>{errors.email1?.message as string || errors.email2?.message as string}</div>
-            </div>
-
-            <div className="pb30">
-               <Textbox 
-                  f
-                  type="password"
-                  placeholder="비밀번호 확인" 
-                  {...register('confirmPassword')}
-                  error={errors.confirmPassword?.message} 
-               />
             </div>
 
             <div className="pb30">
