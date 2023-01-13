@@ -5,6 +5,7 @@ import GlobalStyle from "./GlobalStyle";
 const Login = lazy(() => import('./pages/Login'));
 const FileList = lazy(() => import('./FileList')); ;
 const Testpage = lazy(() => import('./pages/Testpage'));
+const Testform = lazy(() => import('./pages/Testform'));
 const Main = lazy(() => import('./pages/Main'));
 const Join = lazy(() => import('./pages/Join'));
 const FindIdPassword = lazy(() => import('./pages/FindIdPassword'));
@@ -47,6 +48,7 @@ function App() {
                <Routes>
                   <Route path="/file-list" element={<FileList />} />
                   <Route path='/testpage' element={<Testpage />} />
+                  <Route path='/testform' element={<Testform />} />
 
                   {/* 전역 */}
                   <Route path='/login' element={<Login />} />

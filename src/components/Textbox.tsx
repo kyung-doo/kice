@@ -12,6 +12,10 @@ export interface Props extends HTMLProps<HTMLInputElement> {
     */
    w?: string;
    /**
+    * 인풋 에러시
+    */
+   error?: any;
+   /**
     * 텍스트 입력시
     */
    onChange ?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -20,18 +24,22 @@ export interface Props extends HTMLProps<HTMLInputElement> {
 /**
  * 텍스트 인풋 컴포넌트
  */
-const Textbox: FC<Props & {as?: any}> = ({ 
+const Textbox = forwardRef<HTMLInputElement, Props & {as?: any}>(({
    className, 
+   error,
    ...props
-}) => {
-
+}, ref) => {
    return (
-      <Styled.Textbox 
-      className={className} 
-      {...props} 
-      />
+      <>
+         <Styled.Textbox 
+            ref={ref}
+            className={`${className} ${error ? 'error' : ''}`} 
+            {...props}
+         />
+         {error && <Styled.Error>{error}</Styled.Error>}
+      </>
    );
-}
+});
 
 const Styled = {
    Textbox: styled.input<Props>`
@@ -47,6 +55,9 @@ const Styled = {
       color:#333;
       outline: none;
       width: ${props => props.f ? '100%' : props.w || ''};
+      &[required] {
+         background-color: #fff;
+      }
       &:focus{
          border-color: #000;
       }
@@ -56,6 +67,13 @@ const Styled = {
       &:read-only:focus{
          border-color: #d6d6d7;
       }
+      &.error {
+         border-color: red;
+      }
+   `,
+   Error: styled.p`
+      margin-top: 5px;
+      color: red;
    `,
 }
 

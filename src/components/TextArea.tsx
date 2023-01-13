@@ -1,4 +1,4 @@
-import { FC, HTMLProps, ChangeEvent } from "react";
+import { FC, HTMLProps, ChangeEvent, forwardRef } from "react";
 import styled from 'styled-components';
 
 export interface Props extends HTMLProps<HTMLTextAreaElement> {
@@ -9,35 +9,43 @@ export interface Props extends HTMLProps<HTMLTextAreaElement> {
     /**
      * 높이
      */
-    h ?: string;
+   h ?: string;
    /**
     * textarea 타이틀
     */
    title ?: string;
    /**
+    * 인풋 에러시
+    */
+   error?: any;
+   /**
     * 텍스트 입력시
     */
-    onChange ?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+   onChange ?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 /**
  * textarea 컴포넌트
  */
-const TextArea: FC<Props & {as?: any}> = ({ 
-   className,
+const TextArea = forwardRef<HTMLTextAreaElement, Props & {as?: any}>(({
+   className, 
+   error,
    h,
    title,
    ...props
-}) => {
+}, ref) => {
    return (
-      <Styled.TextArea className={className} h={h}>
-         {
-            title && <div className="mb10">{title}</div>
-         }
-         <textarea {...props}></textarea>
-      </Styled.TextArea>
+      <>
+          <Styled.TextArea className={className} h={h}>
+            {
+               title && <div className="mb10">{title}</div>
+            }
+            <textarea {...props}></textarea>
+            {error && <Styled.Error>{error}</Styled.Error>}
+         </Styled.TextArea>
+      </>
    );
-}
+});
 
 
 const Styled = {
@@ -47,6 +55,10 @@ const Styled = {
          padding: 20px;
          height: ${props => props.h};
       }
+   `,
+   Error: styled.p`
+      margin-top: 5px;
+      color: red;
    `,
 }
 
