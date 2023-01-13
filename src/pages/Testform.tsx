@@ -80,7 +80,7 @@ const Testform: FC = () => {
             <div className="pt30 pb30">
                <Textbox 
                   f
-                  placeholder="4~12자의 영문 소문자, 숫자를 조합하여 입력" 
+                  placeholder="아이디 (4~12자의 영문 소문자, 숫자를 조합하여 입력)" 
                   {...register('id')}
                   error={errors.id?.message} 
                />
@@ -90,7 +90,7 @@ const Testform: FC = () => {
                <Textbox 
                   f
                   type="password"
-                  placeholder="영문대/소문자, 숫자, 특수문자중3종류를조합하여8~16자로입력해주세요" 
+                  placeholder="비밀번호 (영문대/소문자, 숫자, 특수문자중3종류를조합하여8~16자로입력해주세요)" 
                   {...register('password')}
                   error={errors.password?.message} 
                />
