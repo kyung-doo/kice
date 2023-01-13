@@ -11,39 +11,6 @@ import TextArea from "../components/TextArea";
 
 
 
-// export const joinResolver = yupResolver(
-//    Yup
-//       .object()
-//       .shape({
-//          name: Yup.string()
-//             .required('이름을 입력하세요.')
-//             .min(2, '이름은 2자리 이상입니다.'),
-//          email: Yup.string()
-//             .required('이메일을 입력하세요.')
-//             .email('올바른 이메일 형식이 아닙니다.'),
-//          password: Yup.string()
-//             .required('비밀번호를 입력하세요.')
-//             .min(6, '6자리 이상의 비밀번호를 입력해주세요.')
-//             .max(20, '20자리 이하의 비밀번호를 입력해주세요.'),
-//          confirmPassword: Yup.string()
-//             .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.'),
-//          phone1: Yup.string(),
-//          phone2: Yup.string()
-//             .required('핸드폰번호를 입력하세요.')
-//             .matches(/^[0-9]+$/, '올바른 핸드폰번호를 입력하세요.')
-//             .min(3, '올바른 핸드폰번호를 입력하세요.'),
-//          phone3: Yup.string()
-//             .required('핸드폰번호를 입력하세요.')
-//             .matches(/^[0-9]+$/, '올바른 핸드폰번호를 입력하세요.')
-//             .length(4, '올바른 핸드폰번호를 입력하세요.'),
-//          address1: Yup.string()
-//             .required('주소를 입력하세요.'),
-//          address2: Yup.string(),
-//          zipcode: Yup.string()
-//             .required()
-//       })
-// );
-
 const resolver = yupResolver(
    Yup
    .object()
