@@ -1,11 +1,13 @@
 import { FC, HTMLProps, useState,useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import Button from "../components/Button";
 import Textbox from "../components/Textbox";
 import RadioGroup from "../components/RadioGroup";
 import Radio from "../components/Radio";
 import Select from "../components/Select";
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
 
 const emailOptions= [
    {label: 'naver.com', value: 'naver'},
@@ -29,6 +31,16 @@ for(let i=1; i<13; i++){
    let k = i < 10 ? `0${i}` : i;
    monthArr.push({ label: k, value: k });
 }
+
+const resolver = yupResolver(
+   Yup
+   .object()
+   .shape({
+    
+    
+   })
+)
+
 
 export interface Props extends HTMLProps<HTMLDivElement> {
    /**
