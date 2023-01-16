@@ -8,6 +8,7 @@ import Select from "../components/Select";
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
+import { forEachChild } from "typescript";
 
 const emailOptions= [
    {label: 'naver.com', value: 'naver'},
@@ -36,8 +37,28 @@ const resolver = yupResolver(
    Yup
    .object()
    .shape({
-    
-    
+      id: Yup.string()
+         .required('아이디를 입력하세요.')
+         .min(4, '아이디는 4글자 이상 입니다.')
+         .max(12, '아이디는 12글자 이하 입니다.')
+         .matches(/^[a-z0-9]+$/, '아이디는 영문 소문자 숫자만 입력 가능합니다.'),
+      password: Yup.string()
+         .required('비밀번호를 입력하세요.')
+         .min(8, '비밀번호는 8글자 이상 입니다.')
+         .max(16, '비밀번호는 16글자 이하 입니다.')
+         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,16}$/, '비밀번호는 영문대/소문자, 숫자, 특수문자중 3종류를 조합하여 사용해주세요.'),
+      confirmPassword: Yup.string()
+         .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.'),
+      name: Yup.string().required('이름을 입력하세요.'),
+      year: Yup.object().required('생년월일을 입력하세요'),
+      month: Yup.object().required('생년월일을 입력하세요'),
+      date: Yup.object().required('생년월일을 입력하세요'),
+      phone: Yup.string().required('휴대폰번호를 입력하세요'),
+      email1: Yup.string().required('이메일을 입력하세요'),
+      email2: Yup.string().required('이메일을 입력하세요'),
+      scName: Yup.string().required('학교명 인증 바랍니다.'),
+      gender: Yup.string(),
+      type: Yup.string()
    })
 )
 
@@ -50,15 +71,17 @@ export interface Props extends HTMLProps<HTMLDivElement> {
 }
 
 const JoinStep2: FC<Props> = ({ setStep }) => {
+   const { 
+      register, 
+      control,
+      handleSubmit, 
+      formState: { errors },
+      setValue: setFormValue,
+      clearErrors,
+      setFocus
+   } = useForm({resolver: resolver});
 
    // input
-   const [ id, setId ] = useState<string>('');
-   const [ pw, setPw ] = useState<string>('');
-   const [ checkPw, setCheckPw ] = useState<string>('');
-   const [ name, setName ] = useState<string>('');
-   const [ phone, setPhone ] = useState<string>('');
-   const [ email, setEmail ] = useState<string>('');
-   const [ emailAdress, setEmailAdress  ] = useState<string>('');
    const [ scName, setScName ] = useState<string>('');
 
    // radio
@@ -66,7 +89,7 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
    const [type, setType] = useState<any>('value1');
    
    // select
-   const [emailSelet, setEmailSelect] = useState<any>();
+   const [emailSelect, setEmailSelect] = useState<any>();
    const [year, setYear] = useState<any>();
    const [month, setMonth] = useState<any>();
    const [date, setDate] = useState<any>();
@@ -76,21 +99,10 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
       { label:'연도와 월을 선택해주세요.', value: null}
    ]);
 
-   // 이메일 직접입력시
-   useEffect(()=>{
-      if(emailSelet){
-         if(emailSelet?.value == 'direct') {
-            setEmailAdress('');
-            // emailRef.current?.focus();
-            return;
-         }
-         setEmailAdress(emailSelet?.label);
-      }
-   },[emailSelet])
-
    // 연도, 달에 따라 변하는 일수 구하기
    useEffect(()=>{
       if(year && month){
+         console.log(year,month);
          // 월의 일수
          const dateLength = new Date(year.value,month.value,0).getDate();
 
@@ -104,8 +116,15 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
       }
    },[year,month])
 
+   const onSubmit = ( data: any ) => {
+      console.log(data);
+      setStep && setStep(2);
+   };
+
+
    return (
       <Styled.JoinStep2>
+         <form onSubmit={handleSubmit(onSubmit)}>
          <h4 className="mb10 mt20">이용약관</h4>
          <table className="mb20">
             <colgroup>
@@ -116,8 +135,9 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                <tr>
                   <th>아이디</th>
                   <td>
-                     <Textbox name='id' value={id} w='400px' className="mr10"
-                     onChange={(e)=>setId(e.target.value)}
+                     <Textbox w='400px' className="mr10"
+                     error={errors.id?.message} 
+                     {...register('id')}
                      placeholder="4~12자의 영문소문자, 숫자를 조합하여 입력하세요."
                      />
                      <Button>중복확인</Button>
@@ -127,8 +147,9 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                <tr>
                   <th>비밀번호</th>
                   <td>
-                     <Textbox name='pw' value={pw} w='550px'
-                     onChange={(e)=>setPw(e.target.value)}
+                     <Textbox w='550px'
+                     {...register('password')}
+                     error={errors.password?.message} 
                      placeholder="영문대/소문자, 숫자, 특수문자 중 3종류를 조합하여 8~16자로 입력해주세요."
                      type='password'                     
                      />
@@ -137,15 +158,21 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                <tr>
                   <th>비밀번호 확인</th>
                   <td>
-                     <Textbox name='checkPw' value={checkPw} w='550px'
-                     onChange={(e)=>setCheckPw(e.target.value)}
+                     <Textbox w='550px'
+                     {...register('confirmPassword')}
+                     error={errors.confirmPassword?.message} 
                      type='password'                     
                      />
                      </td>
                </tr>
                <tr>
                   <th>이름</th>
-                  <td><Textbox name='name' value={name} onChange={(e)=>setName(e.target.value)}/></td>
+                  <td>
+                     <Textbox 
+                     {...register('name')}
+                     error={errors.name?.message} 
+                     />
+                  </td>
                </tr>
                <tr>
                   <th>성별</th>
@@ -166,57 +193,97 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                </tr>
                <tr>
                   <th>생년월일</th>
-                  <td className="flex-align">
-
-                     <Select w='200px' 
-                     options={yearArr} 
-                     value={year} 
-                     onChange={setYear}
-                     />년
-
-                     <Select w='200px'
-                     options={monthArr} 
-                     value={month} 
-                     onChange={setMonth}/>월
-
-                     <Select w='200px'
-                     options={dateArr} 
-                     value={date} 
-                     onChange={setDate}
-                     placeholder='선택'
-                     />일
-
+                  <td>
+                  <Controller
+                  name="birth"
+                  control={control}
+                  render={({ field:{onChange, value,...others} }) => (
+                     <div className="flex-align">
+                        <Select
+                        {...others}
+                        options={yearArr}
+                        onChange={(e:any)=>{ 
+                           onChange(e);
+                           setYear(e);
+                        }}
+                        error={errors.year?.message ? true : false}
+                        />년
+                        <Select
+                        {...others}
+                        options={monthArr}
+                        onChange={(e:any)=>{
+                           onChange(e);
+                           setMonth(e);
+                        }}
+                        error={errors.month?.message ? true : false}
+                        />월
+                        <Select
+                        {...others}
+                        options={dateArr}
+                        onChange={(e:any)=>{
+                           setDate(e);
+                           onChange(e);
+                        }}
+                        error={errors.date?.message ? true : false}
+                        />일
+                     </div>
+                   )} 
+                   /> 
+                  <div className="mt5" style={{color: 'red'}}>
+                     {errors.year?.message as string || errors.month?.message as string || errors.date?.message as string}
+                  </div>
                   </td>
                </tr>
                <tr>
                   <th>휴대폰번호</th>
-                  <td><Textbox name='phone' value={phone} onChange={(e)=>setPhone(e.target.value)}/></td>
+                  <td>
+                     <Textbox 
+                     type='number'
+                     error={errors.phone?.message} 
+                     {...register('phone')}
+                     />
+                     </td>
                </tr>
                <tr>
                   <th>이메일</th>
-                  <td className="flex-align">
-                     <Textbox name='email' value={email} 
-                        onChange={(e)=>setEmail(e.target.value)}
-                        placeholder="ID"
-                        />
-                     @
-                     <Textbox name='emailAdress' value={emailAdress} 
-                        onChange={(e)=>setEmailAdress(e.target.value)}
-                        readOnly={emailSelet?.value !== 'direct'}
-                        placeholder=""
+                  <td>
+                     <div className="flex-align">
+            
+                        <Textbox 
+                           placeholder="ID"
+                           {...register('email1')}
+                           error={errors.email1?.message ? true : false}
+                           />
+                        @
+                        <Textbox 
+                           {...register('email2')}
+                           error={errors.email2?.message ? true : false} 
+                           readOnly={!emailSelect ? true : emailSelect.value == 'direct' ? false : true}
                         />
                         <Select w='200px' 
                         options={emailOptions} 
-                        value={emailSelet} 
-                        onChange={setEmailSelect}
+                        value={emailSelect} 
                         placeholder='선택'
+                        onChange={(e: any) => {
+                           setEmailSelect(e);
+                           if(!e || e.value === 'direct') {
+                              setFormValue('email2', '');
+                              setFocus('email2');
+                           } else {
+                              setFormValue('email2', e.label, { shouldValidate: true});
+                           }
+                        }}
                         />
+                     </div>
+                     <div className="mt5" style={{color: 'red'}}>
+                        {errors.email1?.message as string || errors.email2?.message as string}
+                        </div>
                      </td>
                </tr>
                <tr>
                   <th>회원유형</th>
                   <td>
-                  <RadioGroup value={type} onChange={setType} arrow='hor'>
+                  <RadioGroup value={type} onChange={setType} arrow='hor' >
                         <Radio 
                            name="radio2"
                            label="컨설턴트"
@@ -251,16 +318,22 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
             <tr>
                <th>학교명</th>
                <td>
-                  <Textbox name='scName' value={scName} onChange={(e=>setScName(e.target.value))}/>
+                  <Textbox 
+                  {...register('scName')}
+                  error={errors.scName?.message}
+                  // value={scName} 
+                  // onChange={(e=>setScName(e.target.value))}
+                  />
                   <Button>검색</Button>
                </td>
             </tr>
             </tbody>
          </table>
          <div className="foot mt30 flex-end">
-               <Button className="mr5" onClick={()=> setStep && setStep(2)}>다음</Button>
+               <Button type='submit' className="mr5">다음</Button>
                <Button>취소</Button>
             </div>
+      </form>
       </Styled.JoinStep2>
    );
 }

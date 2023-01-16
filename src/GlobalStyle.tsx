@@ -29,6 +29,11 @@ const GlobalStyle = createGlobalStyle`
    footer,header,hgroup,menu,nav,section {
       display:block;
    }
+   input[type="number"]::-webkit-outer-spin-button,
+   input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+   }
    textarea{
       box-sizing: border-box;
       resize: none;
