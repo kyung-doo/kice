@@ -203,8 +203,8 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                         {...others}
                         options={yearArr}
                         onChange={(e:any)=>{ 
-                           onChange(e);
                            setYear(e);
+                           setFormValue('year', e, { shouldValidate: true});
                         }}
                         error={errors.year?.message ? true : false}
                         />년
@@ -212,8 +212,8 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                         {...others}
                         options={monthArr}
                         onChange={(e:any)=>{
-                           onChange(e);
                            setMonth(e);
+                           setFormValue('month', e, { shouldValidate: true});
                         }}
                         error={errors.month?.message ? true : false}
                         />월
@@ -222,7 +222,7 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                         options={dateArr}
                         onChange={(e:any)=>{
                            setDate(e);
-                           onChange(e);
+                           setFormValue('date', e, { shouldValidate: true});
                         }}
                         error={errors.date?.message ? true : false}
                         />일
