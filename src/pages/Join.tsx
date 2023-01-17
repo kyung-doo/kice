@@ -1,7 +1,5 @@
-import { FC, useCallback, useState } from "react";
+import { FC, useState } from "react";
 import styled from 'styled-components';
-import Checkbox from "../components/Checkbox";
-import Button from "../components/Button";
 import Footer from "../layout/Footer";
 import JoinStep1 from "./JoinStep1";
 import JoinStep2 from "./JoinStep2";

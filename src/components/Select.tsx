@@ -27,6 +27,7 @@ const Select = forwardRef<any, Props & {as?: any}>(({
    error,
    ...props
 }, ref) => {
+   console.log(props);
    return (
       <>
          <Styled.Select 

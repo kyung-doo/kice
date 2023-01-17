@@ -61,13 +61,9 @@ const FileList: FC = () => {
                   <td></td>
                   <td></td>
                   <td><a href="/" target="_blank">/</a></td>
-                  <td></td>
+                  <td>임시완료</td>
                   <td></td>
                </tr>
-
-
-
-
                <tr>
                   <td rowSpan={9}>컨설팅 신청 및 보고</td>
                   <td>컨설팅 일정</td>

@@ -1,7 +1,5 @@
-import { ResultType } from "@remix-run/router/dist/utils";
-import { FC, HTMLProps, useCallback, useEffect, useState } from "react";
+import { FC, HTMLProps, useCallback } from "react";
 import styled from 'styled-components';
-import { createImportSpecifier } from "typescript";
 
 export interface Props extends HTMLProps<HTMLDivElement> {
    /**
