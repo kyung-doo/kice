@@ -19,6 +19,12 @@ Array.from({length : 10},()=>{
 })
 
 
+const arr = [
+   {name : 123,age:123},
+   {name : 123,age:123},
+]
+
+const now = new Date();
 // 메인페이지
 const Main: FC = () => {
 
@@ -29,8 +35,9 @@ const Main: FC = () => {
    const [refTab,setRefTab] = useState<any>('컨설팅');
    const [qnaTab,setQnaTab] = useState<any>('FAQ');
 
+  
    const [date, setDate] = useState<Date>(new Date());
-   const now = new Date();
+
 
    const changeMonth = useCallback((num : number) => {
 
@@ -52,7 +59,7 @@ const Main: FC = () => {
             <div className="box mb10">
                <div className="head flex-between">
                   <h5>컨설팅일정</h5>
-                  <span className="more">+전체일정</span>
+                  <a href='#' className="more">+전체일정</a>
                </div>
                <div className="body fs" style={{ height: '300px' }}>
                   <div className="calendar">
@@ -93,7 +100,7 @@ const Main: FC = () => {
                     <span onClick={()=>setRefTab('컨설팅')} className={ `tab line ${refTab ==  '컨설팅' ? 'active' : ''}`}>컨설팅 자료</span>
                     <span onClick={()=>setRefTab('학생평가')} className={ `tab ${refTab ==  '학생평가' ? 'active' : ''}`}>학생평가 자료</span>
                   </div>
-                  <span className="more">+더보기</span>
+                  <a href='#' className="more">+더보기</a>
                </div>
                <div className="body" style={{ height: '200px' }}>
                   <ul className="contents">
@@ -144,7 +151,7 @@ const Main: FC = () => {
             <div className="box mb10">
                <div className="head flex-between">
                   <h5>공지사항</h5>
-                  <span className="more">+더보기</span>
+                  <a href='#' className="more">+더보기</a>
                </div>
                <div className="body">
                   <ul style={{ height:'100px',overflow:'auto' }}>
@@ -167,7 +174,7 @@ const Main: FC = () => {
                     <span onClick={()=>setQnaTab('FAQ')} className={ `tab line ${qnaTab ==  'FAQ' ? 'active' : ''}`}>FAQ</span>
                     <span onClick={()=>setQnaTab('Q&A')} className={ `tab ${qnaTab ==  'Q&A' ? 'active' : ''}`}>Q&A</span>
                   </div>
-                  <span className="more">+더보기</span>
+                  <a href='#' className="more">+더보기</a>
                </div>
                <div className="body" style={{ height: '200px' }}>
                  
