@@ -1,4 +1,4 @@
-import { FC, HTMLProps, useState,useEffect } from "react";
+import { FC, HTMLProps, useState,useEffect, useCallback } from "react";
 import styled from 'styled-components';
 import Button from "../components/Button";
 import Textbox from "../components/Textbox";
@@ -53,15 +53,16 @@ const resolver = yupResolver(
       year: Yup.object().required('생년월일을 입력하세요'),
       month: Yup.object().required('생년월일을 입력하세요'),
       date: Yup.object().required('생년월일을 입력하세요'),
-      phone: Yup.string().required('휴대폰번호를 입력하세요'),
+      phone: Yup.string()
+         .required('휴대폰번호를 입력하세요')
+         .min(10, '올바른 휴대폰번호를 입력하세요.')
+         .max(11, '올바른 휴대폰번호를 입력하세요.')
+         .matches(/^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/, '올바른 휴대폰번호를 입력하세요.'),
       email1: Yup.string().required('이메일을 입력하세요'),
       email2: Yup.string().required('이메일을 입력하세요'),
       scName: Yup.string().required('학교명 인증 바랍니다.'),
-      gender: Yup.string(),
-      type: Yup.string()
    })
 )
-
 
 export interface Props extends HTMLProps<HTMLDivElement> {
    /**
@@ -116,10 +117,12 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
       }
    },[year,month])
 
-   const onSubmit = ( data: any ) => {
+   const onSubmit = useCallback(( data: any ) => {
+      data.gender = gender;
+      data.type = type;
       console.log(data);
       setStep && setStep(2);
-   };
+   }, [gender, type]);
 
 
    return (
@@ -194,44 +197,62 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                <tr>
                   <th>생년월일</th>
                   <td>
-                  <Controller
-                  name="birth"
-                  control={control}
-                  render={({ field:{onChange, value,...others} }) => (
-                     <div className="flex-align">
-                        <Select
-                        {...others}
-                        options={yearArr}
-                        onChange={(e:any)=>{ 
-                           setYear(e);
-                           setFormValue('year', e, { shouldValidate: true});
-                        }}
-                        error={errors.year?.message ? true : false}
-                        />년
-                        <Select
-                        {...others}
-                        options={monthArr}
-                        onChange={(e:any)=>{
-                           setMonth(e);
-                           setFormValue('month', e, { shouldValidate: true});
-                        }}
-                        error={errors.month?.message ? true : false}
-                        />월
-                        <Select
-                        {...others}
-                        options={dateArr}
-                        onChange={(e:any)=>{
-                           setDate(e);
-                           setFormValue('date', e, { shouldValidate: true});
-                        }}
-                        error={errors.date?.message ? true : false}
-                        />일
+                     <div className="flex">
+                        <Controller
+                           name="year"
+                           control={control}
+                           render={({ field:{onChange, ...others} }) => (
+                              <div className="flex-align">
+                                 <Select
+                                 {...others}
+                                 options={yearArr}
+                                 onChange={(e:any)=>{ 
+                                    setYear(e);
+                                    onChange(e);
+                                 }}
+                                 error={errors.year?.message ? true : false}
+                                 />년
+                              </div>
+                           )} 
+                        /> 
+                        <Controller
+                           name="month"
+                           control={control}
+                           render={({ field:{onChange, ...others} }) => (
+                              <div className="flex-align">
+                                 <Select
+                                 {...others}
+                                 options={monthArr}
+                                 onChange={(e:any)=>{
+                                    setMonth(e);
+                                    onChange(e);
+                                 }}
+                                 error={errors.month?.message ? true : false}
+                                 />월
+                              </div>
+                           )} 
+                        /> 
+                        <Controller
+                           name="date"
+                           control={control}
+                           render={({ field:{onChange, ...others} }) => (
+                              <div className="flex-align">
+                                 <Select
+                                 {...others}
+                                 options={dateArr}
+                                 onChange={(e:any)=>{
+                                    setDate(e);
+                                    onChange(e);
+                                 }}
+                                 error={errors.date?.message ? true : false}
+                                 />일
+                              </div>
+                           )} 
+                        /> 
                      </div>
-                   )} 
-                   /> 
-                  <div className="mt5" style={{color: 'red'}}>
-                     {errors.year?.message as string || errors.month?.message as string || errors.date?.message as string}
-                  </div>
+                     <div className="mt5" style={{color: 'red'}}>
+                        {errors.year?.message as string || errors.month?.message as string || errors.date?.message as string}
+                     </div>
                   </td>
                </tr>
                <tr>
@@ -239,6 +260,7 @@ const JoinStep2: FC<Props> = ({ setStep }) => {
                   <td>
                      <Textbox 
                      type='number'
+                     placeholder="- 제외하고 입력하세요."
                      error={errors.phone?.message} 
                      {...register('phone')}
                      />
